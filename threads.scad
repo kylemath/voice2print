@@ -342,6 +342,38 @@ module AugerThread(outer_diam, inner_diam, height, pitch, tooth_angle=30, tolera
 }
 
 
+// This creates a tapered threaded hole (like NPT) in its children
+module TaperedScrewHole(outer_diam_top, outer_diam_bottom, height, position=[0,0,0], rotation=[0,0,0], pitch=0, tooth_angle=30, tolerance=0.4, tooth_height=0) {
+  extra_height = 0.001 * height;
+  
+  // Calculate the taper angle
+  taper_angle = atan2((outer_diam_top - outer_diam_bottom)/2, height);
+  
+  difference() {
+    children();
+    translate(position)
+      rotate(rotation)
+      translate([0, 0, -extra_height/2]) {
+        // Create a series of progressively smaller thread segments
+        for(h = [0:pitch:height]) {
+          // Calculate diameter at this height
+          current_diam = outer_diam_bottom + (outer_diam_top - outer_diam_bottom) * h/height;
+          
+          translate([0, 0, h])
+            ScrewThread(
+              current_diam,  // Diameter at this height
+              pitch * 1.2,   // Slightly taller to ensure overlap
+              pitch,
+              tooth_angle,
+              tolerance,
+              tooth_height=tooth_height
+            );
+        }
+      }
+  }
+}
+
+
 // This creates a threaded hole in its children using metric standards by
 // default.
 module ScrewHole(outer_diam, height, position=[0,0,0], rotation=[0,0,0], pitch=0, tooth_angle=30, tolerance=0.4, tooth_height=0) {
