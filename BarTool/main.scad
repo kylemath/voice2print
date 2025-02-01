@@ -7,17 +7,17 @@ module bartool_assembly() {
     // Base and handlebar mount
     handlebar_interface();
     
-    // Middle spacer
-    translate([0, 0, 15+MIDDLESPACE_OFFSET])
-    minkowski() {
-        cube([CASE_WIDTH+7.5-6, 
-              CASE_DEPTH+7.5-6,
-              8-3], center=true);
-        cylinder(r=3, h=3, center=true);
-    }
+    // // Middle spacer
+    // translate([-CASE_WIDTH/2, -CASE_DEPTH/2, 15+MIDDLESPACE_OFFSET])
+    // minkowski() {
+    //     cube([CASE_WIDTH+1.5, 
+    //           CASE_DEPTH+1.5,
+    //           7], center=false);
+    //     cylinder(r=3, h=3, center=true);
+    // }
 
     // Socket storage on top
-    translate([0, 0, 25])
+    translate([0, 0, 30])
     socket_storage();
 }
 
