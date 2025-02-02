@@ -3,7 +3,7 @@
 
 // Case Dimensions
 CASE_WIDTH = 200;      // ~8 inches wide
-CASE_DEPTH = 75;       // ~3 inches deep
+CASE_DEPTH = 80;       // ~3 inches deep
 CASE_HEIGHT = 30;      // ~2 inches tall when closed
 LID_HEIGHT = 25;       // Height of the lid portion
 
@@ -12,6 +12,7 @@ MOUNT_HEIGHT = 52;     // Height of the bar mount
 MOUNT_WIDTH = 24;      // Width of the bar mount
 MOUNT_SPACING = 104;   // Distance between inside edges of mounts
 CAVITY_DEPTH = 25;     // Depth of the cavity below handlebar
+MOUNT_GAP_DEPTH = 9.525;     // 3/8 inch
 SIDEWALL_EXTRATHICKNESS = 26; 
 
 // Handlebar Parameters
@@ -23,10 +24,6 @@ HANDLEBAR_OFFSET = 8;
 // Middle Space before tools
 MIDDLESPACE = 0;
 MIDDLESPACE_OFFSET = 10;
-
-// Hinge Parameters
-HINGE_DIAMETER = 6;          // Diameter of hinge pin
-HINGE_LENGTH = CASE_WIDTH - 20;  // Length of hinge
 
 // General Parameters
 $fn = 50;                     // Default smoothness for circles

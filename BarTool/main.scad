@@ -1,23 +1,19 @@
 include <config.scad>
 include <modules/handlebar.scad>
 include <modules/socket_storage.scad>
+include <modules/middle_spacer.scad>
 
 // Main assembly module
 module bartool_assembly() {
-    // Base and handlebar mount
+    // // Base and handlebar mount
+    translate([.75, -.75, 0])
     handlebar_interface();
     
-    // // Middle spacer
-    // translate([-CASE_WIDTH/2, -CASE_DEPTH/2, 15+MIDDLESPACE_OFFSET])
-    // minkowski() {
-    //     cube([CASE_WIDTH+1.5, 
-    //           CASE_DEPTH+1.5,
-    //           7], center=false);
-    //     cylinder(r=3, h=3, center=true);
-    // }
+    // Middle spacer
+    middle_spacer();  
 
-    // Socket storage on top
-    translate([0, 0, 30])
+    // // Socket storage on top
+    translate([0, 0, 40])
     socket_storage();
 }
 

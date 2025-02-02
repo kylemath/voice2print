@@ -10,10 +10,10 @@ module bar_mount_cavity() {
     difference() {
         // Main body with rounded corners
         minkowski() {
-            translate([0, 0, -CAVITY_DEPTH/2])
+            translate([-CASE_WIDTH/2, -CASE_DEPTH/2, -23])
             cube([total_width + WALL_THICKNESS * 2 + SIDEWALL_EXTRATHICKNESS - CORNER_RADIUS*2, 
-                  MOUNT_HEIGHT + WALL_THICKNESS * 2 - CORNER_RADIUS*2, 
-                  CAVITY_DEPTH - CORNER_RADIUS*2], center=true);
+                  CASE_DEPTH + 1.5, 
+                  CAVITY_DEPTH - CORNER_RADIUS*2+6]);
             sphere(r=CORNER_RADIUS);
         }
         
@@ -21,7 +21,7 @@ module bar_mount_cavity() {
         minkowski() {
             hull() {
                 // Handlebar cavity
-                translate([0, 0, HANDLEBAR_OFFSET-HANDLEBAR_DIAMETER/2])
+                translate([0, 0, 2-HANDLEBAR_DIAMETER/2+MOUNT_GAP_DEPTH])
                 rotate([0, 90, 0])
                 cylinder(d=HANDLEBAR_DIAMETER + TPU_TOLERANCE - CORNER_RADIUS*2, 
                         h=total_width + WALL_THICKNESS * 4 - CORNER_RADIUS*2, 
@@ -31,22 +31,23 @@ module bar_mount_cavity() {
         }
         
         // Mount cavities with continuous space between and rounded edges
-        minkowski() {
-            hull() {
-                // Left mount cavity
-                translate([-MOUNT_SPACING/2 - MOUNT_WIDTH/2, 0, -CAVITY_DEPTH/2])
-                cube([MOUNT_WIDTH + TPU_TOLERANCE - CORNER_RADIUS*2, 
-                      MOUNT_HEIGHT + TPU_TOLERANCE - CORNER_RADIUS*2, 
-                      CAVITY_DEPTH + 1 - CORNER_RADIUS*2], center=true);
-                
-                // Right mount cavity
-                translate([MOUNT_SPACING/2 + MOUNT_WIDTH/2, 0, -CAVITY_DEPTH/2])
-                cube([MOUNT_WIDTH + TPU_TOLERANCE - CORNER_RADIUS*2, 
-                      MOUNT_HEIGHT + TPU_TOLERANCE - CORNER_RADIUS*2, 
-                      CAVITY_DEPTH + 1 - CORNER_RADIUS*2], center=true);
+        translate([0, 0, 3.45])
+            minkowski() {
+                hull() {
+                    // Left mount cavity
+                    translate([-MOUNT_SPACING/2 - MOUNT_WIDTH/2, 0, -CAVITY_DEPTH/2])
+                    cube([MOUNT_WIDTH + TPU_TOLERANCE - CORNER_RADIUS*2, 
+                        MOUNT_HEIGHT + TPU_TOLERANCE - CORNER_RADIUS*2, 
+                        3+CAVITY_DEPTH], center=true);
+                    
+                    // Right mount cavity
+                    translate([MOUNT_SPACING/2 + MOUNT_WIDTH/2, 0, -CAVITY_DEPTH/2])
+                    cube([MOUNT_WIDTH + TPU_TOLERANCE - CORNER_RADIUS*2, 
+                        MOUNT_HEIGHT + TPU_TOLERANCE - CORNER_RADIUS*2, 
+                        3+ CAVITY_DEPTH], center=true);
+                }
+                sphere(r=CORNER_RADIUS);
             }
-            sphere(r=CORNER_RADIUS);
-        }
     }
 }
 
