@@ -75,6 +75,22 @@ module socket_storage(x=0, y=0, z=0) {
                 }
             }
             
+            // Pliers depression
+            translate([10, -8, 0]) {
+                rotate([0, 0, 192]) {
+                    // Single pliers depression
+                    translate([PLIERS_POSITION_X, PLIERS_POSITION_Y, BLOCK_DEPTH - PLIERS_HEAD_DEPTH])
+                    linear_extrude(height = PLIERS_HEAD_DEPTH + 1)
+                    scale([PLIERS_SCALE, PLIERS_SCALE, 1])
+                    intersection() {
+                        import(file = "/Users/kylemathewson/voice2print/BarTool/assets/plier_outline.svg", center = true);
+                        // Add bounding box to ensure solid geometry
+                        translate([0, 0, 0])
+                        square([150, 50], center=true);
+                    }
+                }
+            }
+
             // 1/4" extension depression
             translate([CASE_WIDTH/2 - EXT_TOTAL_LENGTH/1.5, -10, BLOCK_DEPTH - EXT_DEPRESSION/2]) {
                 union() {
@@ -112,50 +128,42 @@ module socket_storage(x=0, y=0, z=0) {
     }
 }
 
-        translate([-4, 0, 0])    {
-               // Wrench depression -HEAD  (shallower)
-            translate([WRENCH_POSITION_X, WRENCH_POSITION_Y, BLOCK_DEPTH - WRENCH_HANDLE_DEPTH+8])
-            linear_extrude(height = 10)
-            scale([WRENCH_SCALE, WRENCH_SCALE, 1])
-            intersection() {
-                import(file = "/Users/kylemathewson/voice2print/BarTool/assets/wrench_outline.svg", layer = "", center = true, dpi = 96);
-                translate([-WRENCH_HEAD_LENGTH - WRENCH_TAPER_LENGTH + 11.9 + 16-.1, -20, 0])
-                square([120, 50]);
-            }
-       
-            for (i = [0:1:16]) {
+            translate([-4, 0, 0])    {
                 // Wrench depression -HEAD  (shallower)
-                translate([WRENCH_POSITION_X, WRENCH_POSITION_Y, BLOCK_DEPTH - WRENCH_HANDLE_DEPTH+8-((8/18)*(i+1))])
-                linear_extrude(height = 14+i)
+                translate([WRENCH_POSITION_X, WRENCH_POSITION_Y, BLOCK_DEPTH - WRENCH_HANDLE_DEPTH+8])
+                linear_extrude(height = 10)
                 scale([WRENCH_SCALE, WRENCH_SCALE, 1])
                 intersection() {
                     import(file = "/Users/kylemathewson/voice2print/BarTool/assets/wrench_outline.svg", layer = "", center = true, dpi = 96);
-                    translate([-WRENCH_HEAD_LENGTH - WRENCH_TAPER_LENGTH + 11.9+16-i, -20, 0])
-                    square([1.1, 50]);
+                    translate([-WRENCH_HEAD_LENGTH - WRENCH_TAPER_LENGTH + 11.9 + 16-.1, -20, 0])
+                    square([120, 50]);
+                }
+        
+                for (i = [0:1:16]) {
+                    // Wrench depression -HEAD  (shallower)
+                    translate([WRENCH_POSITION_X, WRENCH_POSITION_Y, BLOCK_DEPTH - WRENCH_HANDLE_DEPTH+8-((8/18)*(i+1))])
+                    linear_extrude(height = 14+i)
+                    scale([WRENCH_SCALE, WRENCH_SCALE, 1])
+                    intersection() {
+                        import(file = "/Users/kylemathewson/voice2print/BarTool/assets/wrench_outline.svg", layer = "", center = true, dpi = 96);
+                        translate([-WRENCH_HEAD_LENGTH - WRENCH_TAPER_LENGTH + 11.9+16-i, -20, 0])
+                        square([1.1, 50]);
+                    }
+                }
+        
+                
+                // Wrench depression -HEAD  (shallower)
+                translate([WRENCH_POSITION_X, WRENCH_POSITION_Y, BLOCK_DEPTH - WRENCH_HEAD_DEPTH+2])
+                linear_extrude(height = WRENCH_HEAD_DEPTH+2)
+                scale([WRENCH_SCALE, WRENCH_SCALE, 1])
+                intersection() {
+                    import(file = "/Users/kylemathewson/voice2print/BarTool/assets/wrench_outline.svg", layer = "", center = true, dpi = 96);
+                    translate([-WRENCH_HEAD_LENGTH - WRENCH_TAPER_LENGTH -88, -20, 0])
+                    square([100, 100]);
                 }
             }
-       
             
-            // Wrench depression -HEAD  (shallower)
-            translate([WRENCH_POSITION_X, WRENCH_POSITION_Y, BLOCK_DEPTH - WRENCH_HEAD_DEPTH+2])
-            linear_extrude(height = WRENCH_HEAD_DEPTH+2)
-            scale([WRENCH_SCALE, WRENCH_SCALE, 1])
-            intersection() {
-                import(file = "/Users/kylemathewson/voice2print/BarTool/assets/wrench_outline.svg", layer = "", center = true, dpi = 96);
-                translate([-WRENCH_HEAD_LENGTH - WRENCH_TAPER_LENGTH -88, -20, 0])
-                square([100, 100]);
-            }
-        }
-            
-            // Pliers depression - Head section (deeper)
-            translate([10, -8, 0])
-            rotate([0, 0, 192])
-            translate([PLIERS_POSITION_X, PLIERS_POSITION_Y, BLOCK_DEPTH - PLIERS_HEAD_DEPTH])
-            linear_extrude(height = PLIERS_HEAD_DEPTH)
-            scale([PLIERS_SCALE, PLIERS_SCALE, 1])
-            import(file = str("/Users/kylemathewson/voice2print/BarTool/assets/plier_outline.svg"), 
-                  center = true, 
-                  dpi = 96);
+          
        
                
         }
