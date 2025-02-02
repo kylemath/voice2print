@@ -1,44 +1,22 @@
 include <../config.scad>
 
-// Socket Parameters
-SOCKET_LENGTH = 24.8;        // Length of sockets
-BLOCK_DEPTH = 25;          // Total height of socket block
-SOCKET_DEPRESSION = 20;      // How deep sockets sit in the block
-SOCKET_SPACING = 2;         // Space between socket edges
-SIDE_SPACE = 15;            // Space between socket array and side of case
-CORNER_RADIUS = 3;         // Radius for rounded corners
-// Socket sizes (diameter, not drive size)
-SOCKET_DIAMETERS = [17.82, 16.66, 13.73, 11.68, 11.61, 11.69];  // 1/2", 12mm, 10mm, 8mm, 6mm, 1/4" sockets
+// Wrench Parameters
+WRENCH_HEAD_DEPTH = 26;     // Depth of socket head section
+WRENCH_HANDLE_DEPTH = 18;   // Depth of handle section
+WRENCH_HEAD_LENGTH = 33.33; // Length of the head section
+WRENCH_TAPER_LENGTH = 16;   // Length of transition section
+WRENCH_SCALE = 1;          // Scale factor for SVG
+WRENCH_POSITION_X = -25;    // X position adjustment
+WRENCH_POSITION_Y = 22;     // Y position adjustment
 
-// Hex Bit Parameters
-HEX_BIT_LENGTH = 25;        // Standard length for hex bits
-HEX_BIT_DIAMETER = 6.35;    // Standard 1/4" hex bit diameter
-HEX_DEPRESSION = 20;        // How deep bits sit in the block
-HEX_SPACING = 3;           // Space between hex holes
-HEX_COUNT = 5;             // Number of hex bits per row
-HEX_ROW_SPACING = 15;      // Spacing between rows of hex bits
-
-// Extension Parameters
-EXT_TOTAL_LENGTH = 76.33;   // Total length of extension
-EXT_MAIN_DIAMETER = 8.2;    // Main shaft diameter
-EXT_MAIN_LENGTH = 50;       // Length of main section
-EXT_MALE_LENGTH = 7.5;      // Length of male end
-EXT_MALE_WIDTH = 6.35;      // 1/4" square male end
-EXT_MALE_TAPER = 2.5;       // Taper length to male end
-EXT_FEMALE_LENGTH = 13.4;   // Length of female end
-EXT_FEMALE_DIAMETER = 12;   // Outer diameter of female end
-EXT_FEMALE_TAPER = 3;       // Taper length to female end
-EXT_DEPRESSION = 20;        // How deep extension sits in block
-
-// Long Depression Parameters
-LONG_DEPRESSION_LENGTH = 130;  // Length of the long depression
-LONG_DEPRESSION_WIDTH = 13.6;  // Width of the long depression
-LONG_DEPRESSION_DEPTH = 18;    // Depth of the long depression
-
-// Triangle Depression Parameters
-TRIANGLE_BASE = 76.23;        // Base length of triangle
-TRIANGLE_HEIGHT = 130;        // Height of triangle
-TRIANGLE_DEPTH = 10;          // Depth of depression
+// Pliers Parameters
+PLIERS_HEAD_DEPTH = 10;     // Depth of pliers head section
+PLIERS_HANDLE_DEPTH = 15;   // Depth of handle section
+PLIERS_HEAD_LENGTH = 33.33; // Length of the head section
+PLIERS_TAPER_LENGTH = 16;   // Length of transition section
+PLIERS_SCALE = 1;          // Scale factor for SVG
+PLIERS_POSITION_X = 30;    // X position adjustment (opposite side of wrench)
+PLIERS_POSITION_Y = -10;    // Y position adjustment
 
 // Helper function to sum an array
 function sum(v, i = 0, r = 0) = i < len(v) ? sum(v, i + 1, r + v[i]) : r;
@@ -60,7 +38,7 @@ module socket_storage(x=0, y=0, z=0) {
             }
             
             // Socket depressions (sharp edges)
-            translate([0, -CASE_DEPTH/2 + 3 + SIDE_SPACE, 0]) {
+            translate([0, -CASE_DEPTH/2  + SIDE_SPACE, 0]) {
                 // Find the largest diameter to use as reference for alignment
                 max_diameter = max([for (d = SOCKET_DIAMETERS) d]);
                 
@@ -82,7 +60,7 @@ module socket_storage(x=0, y=0, z=0) {
             }
             
             // Hex bit holes (in two rows behind the sockets)
-            translate([CASE_WIDTH/3-(HEX_COUNT * (HEX_BIT_DIAMETER + HEX_SPACING))/2 + HEX_BIT_DIAMETER/2, 
+            translate([CASE_WIDTH/2.8-(HEX_COUNT * (HEX_BIT_DIAMETER + HEX_SPACING))/2 + HEX_BIT_DIAMETER/2, 
                       CASE_DEPTH/2.8, 
                       BLOCK_DEPTH - HEX_DEPRESSION/2]) {
                 // First row (original)
@@ -98,7 +76,7 @@ module socket_storage(x=0, y=0, z=0) {
             }
             
             // 1/4" extension depression
-            translate([CASE_WIDTH/2 - EXT_TOTAL_LENGTH/1.5, -3, BLOCK_DEPTH - EXT_DEPRESSION/2]) {
+            translate([CASE_WIDTH/2 - EXT_TOTAL_LENGTH/1.5, -10, BLOCK_DEPTH - EXT_DEPRESSION/2]) {
                 union() {
 
                     // Create the entire extension shape using hull() between segments
@@ -134,19 +112,55 @@ module socket_storage(x=0, y=0, z=0) {
     }
 }
 
-            // Long depression
-            translate([CASE_WIDTH/2 -195, CASE_DEPTH/4+2, BLOCK_DEPTH - LONG_DEPRESSION_DEPTH/2])
-            cube([LONG_DEPRESSION_LENGTH, LONG_DEPRESSION_WIDTH, LONG_DEPRESSION_DEPTH], center=false);
-    
-            // Triangular depression
-            translate([CASE_WIDTH/2 - TRIANGLE_BASE/2-155, -CASE_DEPTH/4+38, BLOCK_DEPTH - TRIANGLE_DEPTH]) {
-                rotate([0, 0, -74])
-                linear_extrude(height=TRIANGLE_DEPTH)
-                polygon(points=[[0,0], [TRIANGLE_BASE,0], [TRIANGLE_BASE/2,TRIANGLE_HEIGHT]]);
+        translate([-4, 0, 0])    {
+               // Wrench depression -HEAD  (shallower)
+            translate([WRENCH_POSITION_X, WRENCH_POSITION_Y, BLOCK_DEPTH - WRENCH_HANDLE_DEPTH+8])
+            linear_extrude(height = 10)
+            scale([WRENCH_SCALE, WRENCH_SCALE, 1])
+            intersection() {
+                import(file = "/Users/kylemathewson/voice2print/BarTool/assets/wrench_outline.svg", layer = "", center = true, dpi = 96);
+                translate([-WRENCH_HEAD_LENGTH - WRENCH_TAPER_LENGTH + 11.9 + 16-.1, -20, 0])
+                square([120, 50]);
+            }
+       
+            for (i = [0:1:16]) {
+                // Wrench depression -HEAD  (shallower)
+                translate([WRENCH_POSITION_X, WRENCH_POSITION_Y, BLOCK_DEPTH - WRENCH_HANDLE_DEPTH+8-((8/18)*(i+1))])
+                linear_extrude(height = 14+i)
+                scale([WRENCH_SCALE, WRENCH_SCALE, 1])
+                intersection() {
+                    import(file = "/Users/kylemathewson/voice2print/BarTool/assets/wrench_outline.svg", layer = "", center = true, dpi = 96);
+                    translate([-WRENCH_HEAD_LENGTH - WRENCH_TAPER_LENGTH + 11.9+16-i, -20, 0])
+                    square([1.1, 50]);
+                }
+            }
+       
+            
+            // Wrench depression -HEAD  (shallower)
+            translate([WRENCH_POSITION_X, WRENCH_POSITION_Y, BLOCK_DEPTH - WRENCH_HEAD_DEPTH+2])
+            linear_extrude(height = WRENCH_HEAD_DEPTH+2)
+            scale([WRENCH_SCALE, WRENCH_SCALE, 1])
+            intersection() {
+                import(file = "/Users/kylemathewson/voice2print/BarTool/assets/wrench_outline.svg", layer = "", center = true, dpi = 96);
+                translate([-WRENCH_HEAD_LENGTH - WRENCH_TAPER_LENGTH -88, -20, 0])
+                square([100, 100]);
             }
         }
+            
+            // Pliers depression - Head section (deeper)
+            translate([10, -8, 0])
+            rotate([0, 0, 192])
+            translate([PLIERS_POSITION_X, PLIERS_POSITION_Y, BLOCK_DEPTH - PLIERS_HEAD_DEPTH])
+            linear_extrude(height = PLIERS_HEAD_DEPTH)
+            scale([PLIERS_SCALE, PLIERS_SCALE, 1])
+            import(file = str("/Users/kylemathewson/voice2print/BarTool/assets/plier_outline.svg"), 
+                  center = true, 
+                  dpi = 96);
+       
+               
+        }
     }
-}
+}     
 
 // // For testing individual component
 // if ($preview) {

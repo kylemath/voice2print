@@ -13,7 +13,7 @@ module bartool_assembly() {
     middle_spacer();  
 
     // // Socket storage on top
-    translate([0, 0, 40])
+    translate([0, 0, 25])
     socket_storage();
 }
 
