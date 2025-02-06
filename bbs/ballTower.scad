@@ -103,7 +103,6 @@ module segment_circle_half(
             position=[0,0,0]
         ) { 
 
-                // difference() {
                 //     // Main body
                     TaperedScrewMale(
                         outer_diam_top = 
@@ -121,7 +120,6 @@ module segment_circle_half(
                     };
               
 
-                // }
         }
 
 
