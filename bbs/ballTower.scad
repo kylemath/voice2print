@@ -5,7 +5,7 @@ $fn = 100;  // Smoothness of circles
 
 // Thread parameters
 thread_pitch = 3;           // Thread pitch in mm
-thread_height = 8;          // Height of threaded section
+thread_height = 5;          // Height of threaded section
 thread_tolerance = 0.4;     // Clearance between threads
 thread_angle = 60;         // Standard thread angle (not wall angle)
 helix_angle = 20;          // 90° - 70° = 20° helix angle
@@ -25,7 +25,7 @@ cone_taper = 6;           // Reduced taper to minimize wall contact
 
 // Nesting parameters
 nesting_clearance = 0;    // Increased clearance between nested segments
-floor_clearance = 2.5;      // Vertical clearance between segments
+floor_clearance = 2;      // Vertical clearance between segments
 lip_height = 0;           // Height of the interlocking lip
 
 // Hole pattern parameters
@@ -89,56 +89,45 @@ module segment_circle_half(
     
     // Calculate thread pitch based on diameter and helix angle
     local_pitch = tan(helix_angle) * PI * ((actual_top_diameter + actual_bottom_diameter)/4);
+    mid_diameter_outer = (actual_top_diameter - actual_bottom_diameter) * (thread_height/height) + actual_bottom_diameter + wall_thickness*1;
+    mid_diameter_inner = actual_top_diameter - (actual_top_diameter - actual_bottom_diameter) * (thread_height/height) - wall_thickness*1;
     
-    union() {
-        difference() {
-            union() {
-                // Main body
-                cylinder(h=height, 
-                        d1=actual_bottom_diameter,
-                        d2=actual_top_diameter);
-            }
+    difference() {
+        // Internal threads at top using tapered hole
+        TaperedScrewHole(
+            outer_diam_top = mid_diameter_outer ,
+            outer_diam_bottom = actual_bottom_diameter,
+            height = height,
+            pitch = 1.411,
+            tooth_angle = 60,
+            position=[0,0,0]
+        ) { 
 
-            // Interior cutout
-            translate([0, 0, wall_thickness ]) {
-                cylinder(h=height+1, 
-                        d1=actual_bottom_diameter-wall_thickness*2,
-                        d2=actual_top_diameter-wall_thickness*2) ;
-            };
-            create_hole_pattern(actual_bottom_diameter, hole_size, wall_thickness);
+                // difference() {
+                //     // Main body
+                    TaperedScrewMale(
+                        outer_diam_top = 
+                            mid_diameter_outer,
+                        outer_diam_bottom = 
+                            actual_bottom_diameter + 
+                            wall_thickness * 1,                        
+                        height = thread_height,
+                        pitch = 1.811,
+                        tooth_angle = 50
+                    ) { 
+                        cylinder(h=height, 
+                                d1=actual_bottom_diameter,
+                                d2=actual_top_diameter);
+                    };
+              
 
+                // }
         }
+
+
+        // create_hole_pattern(actual_bottom_diameter, hole_size, wall_thickness);
     }
 
-    // Internal threads at top using tapered hole
-    translate([0, 0, 15])
-        TaperedScrewHole(
-            outer_diam_top = actual_top_diameter,
-            outer_diam_bottom =actual_top_diameter - (actual_top_diameter-actual_bottom_diameter) * (thread_height/height),
-            height = thread_height,
-            pitch = 1.411,
-            tooth_angle = 60
-        ) { 
-            cylinder(h=thread_height+.02,
-                d1=
-                  actual_top_diameter - (actual_top_diameter-actual_bottom_diameter) * (thread_height/height),
-                d2=actual_top_diameter); 
-        }
-
-    // Internal threads at top using tapered hole
-    translate([0, 0, -12])
-        // TaperedScrewHole(
-        //     outer_diam_top = actual_top_diameter-wall_thickness,
-        //     outer_diam_bottom = actual_bottom_diameter-wall_thickness,
-        //     height = 10,
-        //     pitch = 1.411,
-        //     tooth_angle = 60
-        // ) { 
-            cylinder(h=thread_height+.02,
-                d2=actual_bottom_diameter - (actual_bottom_diameter-actual_top_diameter) * ((height-thread_height)/height),
-                d1=actual_bottom_diameter); 
-        // }    
-            
 }
 
 // Module for complete segment
@@ -150,23 +139,22 @@ module complete_segment(
     is_lower = false,
     level = 0
 ) {
-    union() {
-        segment_circle_half(
-            top_diameter = top_diameter,
-            bottom_diameter = bottom_diameter,
-            height = height,
-            hole_size = hole_size,
-            is_lower = is_lower,
-            level = level
-        );
+    segment_circle_half(
+        top_diameter = top_diameter,
+        bottom_diameter = bottom_diameter,
+        height = height,
+        hole_size = hole_size,
+        is_lower = is_lower,
+        level = level
+    );
         
-    }
 }
 
 // Render all segments
-for (i = [0:len(hole_sizes)-11]) {
-    z_lift = (len(hole_sizes)-1-i) * (wall_thickness + floor_clearance);
-    
+for (i = [9:len(hole_sizes)-1]) {
+    // z_lift = (len(hole_sizes)-1-i) * (wall_thickness + floor_clearance);
+    z_lift = (len(hole_sizes)-1-i) * (-get_height(i)-1);
+
     translate([0, 0, z_lift])
         complete_segment(
             top_diameter = get_top_diameter(len(hole_sizes)-1-i)+2*wall_thickness,
