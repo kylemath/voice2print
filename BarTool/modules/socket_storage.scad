@@ -65,7 +65,7 @@ module socket_storage(x=0, y=0, z=0) {
             }
             
             // Top row socket depressions
-            translate([20, -CASE_DEPTH/2 + SIDE_SPACE + 18, 0]) {  // Offset by 20mm for top row
+            translate([16, -CASE_DEPTH/2 + SIDE_SPACE + 16, 0]) {  // Offset by 20mm for top row
                 create_socket_depressions(TOP_SOCKET_DIAMETERS, TOP_SOCKET_SPACING, TOP_SOCKET_DEPRESSION);
             }
 
@@ -84,7 +84,7 @@ module socket_storage(x=0, y=0, z=0) {
                     cylinder(d=HEX_BIT_DIAMETER, h=HEX_BIT_LENGTH, center=true, $fn=6);
                 }
                 // Second row (new, above the first)
-                for(i = [1:HEX_COUNT-1]) {
+                for(i = [0:HEX_COUNT-1]) {
                     translate([i * (HEX_BIT_DIAMETER + HEX_SPACING)-HEX_SPACING, -HEX_ROW_SPACING, 0])
                     cylinder(d=HEX_BIT_DIAMETER, h=HEX_BIT_LENGTH, center=true, $fn=6);
                 }
