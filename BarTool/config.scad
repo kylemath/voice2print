@@ -89,6 +89,10 @@ IMPERIAL_SOCKET_CURRENT_SOCKETS = get_sizes(IMPERIAL_SOCKET_SELECTED_SIZES);
 IMPERIAL_SOCKET_SIZES = [for (socket = IMPERIAL_SOCKET_CURRENT_SOCKETS) socket[0]];
 IMPERIAL_SOCKET_DIAMETERS = [for (socket = IMPERIAL_SOCKET_CURRENT_SOCKETS) socket[1]]; 
 
+GIANT_CYLINDER_DIAMETER = 350;
+GIANT_CYLINDER_HEIGHT = CASE_DEPTH*4;
+
+
 // Function to look up diameter by socket size
 function get_socket_diameter(size) = SOCKET_DIAMETERS[search([size], SOCKET_SIZES)[0]];
 

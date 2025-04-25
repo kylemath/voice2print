@@ -1,15 +1,26 @@
 // Lid module for BarTool
 include <../config.scad>
+include <../modules/socket_storage.scad>  // Include for tool position variables
 
 // Lid specific parameters
 LID_OVERLAP = 5;  // How much the lid overlaps the base on each side
 LID_THICKNESS = 10;  // Total thickness of the lid
 TOOL_DEPRESSION_DEPTH = 4;  // Depth of tool depressions in lid
 LID_WALL_EXTRA_WIDTH = 2.5;  // Extra width for the walls (2.5mm on each side)
-LID_WALL_HEIGHT = 10;  // Wall height (adjusted to 10mm)
-LID_WALL_THICKNESS = 2.5;  // Wall thickness
-LID_TOLERANCE = 0.3;  // Tolerance between the lid walls and the base (0.3mm gap)
+LID_WALL_HEIGHT = 12;  // Wall height (adjusted to 10mm)
+LID_WALL_THICKNESS = 3;  // Wall thickness
+LID_TOLERANCE = 0.2;  // Tolerance between the lid walls and the base (0.3mm gap)
 LID_CHAMFER = 2;  // Size of the chamfer on the lid's outside face
+HEX_HOLE_EXTRA_CLEARANCE = 0.5;  // Additional clearance for hex bit holes (0.5mm wider)
+HEX_HOLE_DEPTH = 9;  // Deeper hex holes (8mm)
+
+// Logo parameters
+LOGO_FILE = "/Users/kylemathewson/voice2print/BarTool/assets/ChatGPT-Image-Apr-25_-2025_-11_30_11-AM.svg";  // Path to PADPAK SVG file
+LOGO_SCALE = 0.35;  // Scale factor for the logo (increased by 4x from 0.15)
+LOGO_DEPTH = 2;  // Depth of the logo embossing (mm)
+LOGO_POSITION_X = 0;  // X position of logo center
+LOGO_POSITION_Y = 0;  // Y position of logo center
+LOGO_ROTATION = 0;  // Rotation angle for logo
 
 module lid() {
     translate([-CASE_WIDTH, -5, -10]) {
@@ -17,11 +28,11 @@ module lid() {
             difference() {
                 union() {
                     // Main lid plate with chamfered outer face
-                    translate([0, 0, -LID_THICKNESS/2]) {
+                    translate([0, 0, -8]) {
                         minkowski() {
-                            cube([CASE_WIDTH + LID_OVERLAP*2 + LID_WALL_EXTRA_WIDTH*2, 
-                            CASE_DEPTH + LID_OVERLAP*2 + LID_WALL_EXTRA_WIDTH*2, 
-                            6], center=true);
+                            cube([CASE_WIDTH + LID_OVERLAP*2 + LID_WALL_EXTRA_WIDTH, 
+                            CASE_DEPTH + LID_OVERLAP*2 + LID_WALL_EXTRA_WIDTH, 
+                            8], center=true);
                             sphere(r=LID_CHAMFER, $fn=30);
                         }
                     }
@@ -29,7 +40,7 @@ module lid() {
                     // Add walls extending from the lid
                     difference() {
                         // Outer wall - extending from -LID_THICKNESS to LID_WALL_HEIGHT
-                        translate([0, 0, -LID_THICKNESS])
+                        translate([0, 0, -4])
                         linear_extrude(height = LID_WALL_HEIGHT + LID_THICKNESS)
                         difference() {
                             // Outer perimeter
@@ -90,7 +101,7 @@ module lid() {
                     }
                 }
                 
-                // Hex bit depressions
+                // Hex bit depressions - wider and deeper
                 translate([CASE_WIDTH/2.8-(HEX_COUNT * (HEX_BIT_DIAMETER + HEX_SPACING))/2 + HEX_BIT_DIAMETER/2 + 5,
                         CASE_DEPTH/2.8+2,
                         0]) {
@@ -100,9 +111,9 @@ module lid() {
                                 i * (HEX_BIT_DIAMETER + HEX_SPACING) + 
                                 (row == 1 ? -HEX_SPACING : 0),
                                 -row * HEX_ROW_SPACING,
-                                -TOOL_DEPRESSION_DEPTH
+                                -HEX_HOLE_DEPTH
                             ])
-                            cylinder(d=HEX_BIT_DIAMETER + 1, h=TOOL_DEPRESSION_DEPTH + 0.1);
+                            cylinder(d=HEX_BIT_DIAMETER + 1 + HEX_HOLE_EXTRA_CLEARANCE, h=HEX_HOLE_DEPTH + 0.1);
                         }
                     }
                 }
@@ -133,7 +144,7 @@ module lid() {
 
                     // Extension depression (original)
                     rotate([0, 0, 200]) {
-                        translate([CASE_WIDTH/2 - EXT_TOTAL_LENGTH +33, -5, -TOOL_DEPRESSION_DEPTH+1]) {
+                        translate([CASE_WIDTH/2 - EXT_TOTAL_LENGTH +33, -5, -TOOL_DEPRESSION_DEPTH/2+1]) {
                             union() {
                                 // Create the entire extension shape using hull() between segments
                                 hull() {
@@ -176,4 +187,62 @@ module lid() {
 // // For preview
 // if ($preview) {
 //     lid();
+// } 
+
+// Module for just the logo (for separate printing)
+module logo_only() {
+    difference() {
+        // Create a solid rectangular block for the logo area - increased by 4x
+        translate([LOGO_POSITION_X - 300, LOGO_POSITION_Y - 160, 0]) 
+            cube([600, 320, LOGO_DEPTH + 0.5]);
+        
+        // Subtract everything except the logo shape
+        difference() {
+            // Large block to remove everything except where the logo is - increased to cover 4x larger logo
+            translate([LOGO_POSITION_X - 400, LOGO_POSITION_Y - 400, -0.5])
+                cube([800, 800, LOGO_DEPTH + 2]);
+            
+            // Logo shape to preserve
+            translate([LOGO_POSITION_X, LOGO_POSITION_Y, 0]) {
+                rotate([0, 0, LOGO_ROTATION]) {
+                    linear_extrude(height = LOGO_DEPTH + 0.5)
+                    scale([LOGO_SCALE, LOGO_SCALE, 1])
+                    import(file = LOGO_FILE, center = true);
+                }
+            }
+        }
+    }
+}
+
+// Add the logo embossing to the top/opposite side of the lid
+module lid_with_logo() {
+    difference() {
+        lid();
+        
+        // Add logo embossing on the top side of the lid
+        translate([-CASE_WIDTH, -5, 0]) {  // Match the lid translation
+            rotate([180, 0, 0]) {  // Match the lid rotation
+                translate([LOGO_POSITION_X, LOGO_POSITION_Y, -6]) {
+                    rotate([0, 0, LOGO_ROTATION]) {
+                        linear_extrude(height = LOGO_DEPTH + .3)
+                        scale([LOGO_SCALE, LOGO_SCALE, 1])
+                        import(file = LOGO_FILE, center = true);
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Module for lid with logo cutout
+module lid_minus_logo() {
+    difference() {
+        lid_with_logo();
+        logo_only();
+    }
+}
+
+// // For preview
+// if ($preview) {
+//     lid_with_logo();
 // } 
