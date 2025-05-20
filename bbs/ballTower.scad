@@ -16,20 +16,14 @@ hole_sizes = [
 ];
 
 // Segment parameters
-wall_thickness = 1.5;
+wall_thickness = 1;
 min_segment_height = 15;    // Minimum height (for bottom segment)
 max_segment_height = 20;    // Maximum height (for top segment)
 diameter_step = 5;         // How much diameter changes per level
 initial_diameter = 20;      // Starting diameter
-cone_taper = 6;           // Reduced taper to minimize wall contact
-
-// Nesting parameters
-nesting_clearance = 0;    // Increased clearance between nested segments
-floor_clearance = 2;      // Vertical clearance between segments
-lip_height = 0;           // Height of the interlocking lip
 
 // Hole pattern parameters
-hex_spacing_factor = 2.2;   // Spacing between holes as multiple of hole size
+hex_spacing_factor = 1.8;   // Spacing between holes as multiple of hole size
 depression_size_factor = 1.1;  // Depression diameter as multiple of hole size
 depression_depth = 1;       // Depth of depression around holes
 
@@ -38,7 +32,7 @@ function get_base_diameter(level) =
     initial_diameter + ((len(hole_sizes)-1-level) * diameter_step);
 
 function get_top_diameter(level) =
-    get_base_diameter(level-1) + (wall_thickness * 4) + (nesting_clearance * 2);
+    get_base_diameter(level-1) + (wall_thickness * 4) ;
 
 // Function to calculate height for each level
 function get_height(level) =
@@ -82,50 +76,49 @@ module segment_circle_half(
     height,       
     hole_size,         
     is_lower = false,
-    level = 0
+    level = 0,
+    next_bottom_diameter = 0  // Added parameter for next cup's bottom diameter
 ) {
-    actual_top_diameter = top_diameter - (level * nesting_clearance * 2);
-    actual_bottom_diameter = bottom_diameter - (level * nesting_clearance * 2);
+    actual_top_diameter = top_diameter;
+    actual_bottom_diameter = bottom_diameter;
     
-    // Calculate thread pitch based on diameter and helix angle
-    local_pitch = tan(helix_angle) * PI * ((actual_top_diameter + actual_bottom_diameter)/4);
-    mid_diameter_outer = (actual_top_diameter - actual_bottom_diameter) * (thread_height/height) + actual_bottom_diameter + wall_thickness*1;
-    mid_diameter_inner = actual_top_diameter - (actual_top_diameter - actual_bottom_diameter) * (thread_height/height) - wall_thickness*1;
-    
-    difference() {
-        // Internal threads at top using tapered hole
-        TaperedScrewHole(
-            outer_diam_top = mid_diameter_outer ,
-            outer_diam_bottom = actual_bottom_diameter,
-            height = height,
-            pitch = 1.411,
-            tooth_angle = 60,
-            position=[0,0,0]
-        ) { 
+    // Main body
+    TaperedScrewHole(
+        // Use next cup's bottom diameter for inner thread if available,
+        // otherwise use this cup's dimensions
+        outer_diam_top = next_bottom_diameter > 0 ? 
+            next_bottom_diameter + wall_thickness*4 : 
+            actual_bottom_diameter + wall_thickness*2,
+        outer_diam_bottom = next_bottom_diameter > 0 ? 
+            next_bottom_diameter + wall_thickness*1 : 
+            actual_bottom_diameter + wall_thickness*1,
+        height = 4,
+        pitch = 1.411,
+        tooth_angle = 60,
+        position=[0,0,height-4]
+    ) { 
+        difference() {
+            difference() {
+                TaperedScrewMale(
+                    outer_diam_top = actual_bottom_diameter + wall_thickness * 2,
+                    outer_diam_bottom = actual_bottom_diameter + wall_thickness * 1,                        
+                    height = 4,
+                    pitch = 1.411,
+                    tooth_angle = 60, 
+                    position=[0,0,0]
+                ) { 
+                    cylinder(h=height, 
+                                    d1=actual_bottom_diameter,
+                                    d2=actual_top_diameter);
 
-                //     // Main body
-                    TaperedScrewMale(
-                        outer_diam_top = 
-                            mid_diameter_outer,
-                        outer_diam_bottom = 
-                            actual_bottom_diameter + 
-                            wall_thickness * 1,                        
-                        height = thread_height,
-                        pitch = 1.811,
-                        tooth_angle = 50
-                    ) { 
-                        cylinder(h=height, 
-                                d1=actual_bottom_diameter,
-                                d2=actual_top_diameter);
-                    };
-              
-
-        }
-
-
-        // create_hole_pattern(actual_bottom_diameter, hole_size, wall_thickness);
+                };
+                translate([0,0,1])
+                    cylinder(h=height+2, d1=actual_bottom_diameter-2, d2= (level > 0) ?  next_bottom_diameter : actual_bottom_diameter);
+            };
+            create_hole_pattern(actual_bottom_diameter, hole_size, wall_thickness);
+        };
     }
-
+     
 }
 
 // Module for complete segment
@@ -135,7 +128,8 @@ module complete_segment(
     height,       
     hole_size,         
     is_lower = false,
-    level = 0
+    level = 0,
+    next_bottom_diameter = 0  // Added parameter
 ) {
     segment_circle_half(
         top_diameter = top_diameter,
@@ -143,23 +137,35 @@ module complete_segment(
         height = height,
         hole_size = hole_size,
         is_lower = is_lower,
-        level = level
+        level = level,
+        next_bottom_diameter = next_bottom_diameter
     );
         
 }
 
-// Render all segments
-for (i = [9:len(hole_sizes)-1]) {
-    // z_lift = (len(hole_sizes)-1-i) * (wall_thickness + floor_clearance);
-    z_lift = (len(hole_sizes)-1-i) * (-get_height(i)-1);
+// Render all segments with cross section
+difference() {
+    union() {
+        for (i = [0:len(hole_sizes)-1]) { 
+            // Calculate x offset based on the maximum diameter of each segment plus some spacing
+            z_offset = i* -2* (wall_thickness) ;
 
-    translate([0, 0, z_lift])
-        complete_segment(
-            top_diameter = get_top_diameter(len(hole_sizes)-1-i)+2*wall_thickness,
-            bottom_diameter = get_top_diameter(len(hole_sizes)-1-i+1)-3*wall_thickness,
-            height = get_height(i),
-            hole_size = hole_sizes[i],
-            is_lower = (i < len(hole_sizes)-1),
-            level = i
-        );
-} 
+            // Calculate the bottom diameter of the next cup up (if it exists)
+            next_bottom_diameter = (i < len(hole_sizes)) ? (get_top_diameter(len(hole_sizes)-1-i)-5*wall_thickness) : 0;
+
+            translate([0, 0, z_offset-20])
+                complete_segment(
+                    top_diameter = get_top_diameter(len(hole_sizes)-1-i),
+                    bottom_diameter = get_top_diameter(len(hole_sizes)-1-i+1)-3*wall_thickness,
+                    height = get_height(i),
+                    hole_size = hole_sizes[i],
+                    is_lower = (i < len(hole_sizes)-1),
+                    level = i,
+                    next_bottom_diameter = next_bottom_diameter
+                );
+        }
+    }
+    // // Cut in half horizontally
+    // translate([-500, 0, -500])
+    //     cube([1000, 500, 1000]);
+}
