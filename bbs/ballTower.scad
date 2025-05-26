@@ -87,8 +87,8 @@ module segment_circle_half(
         // Use next cup's bottom diameter for inner thread if available,
         // otherwise use this cup's dimensions
         outer_diam_top = next_bottom_diameter > 0 ? 
-            next_bottom_diameter + wall_thickness*4 : 
-            actual_bottom_diameter + wall_thickness*2,
+            next_bottom_diameter + wall_thickness*3 : 
+            actual_bottom_diameter + wall_thickness*3,
         outer_diam_bottom = next_bottom_diameter > 0 ? 
             next_bottom_diameter + wall_thickness*1 : 
             actual_bottom_diameter + wall_thickness*1,
@@ -100,20 +100,20 @@ module segment_circle_half(
         difference() {
             difference() {
                 TaperedScrewMale(
-                    outer_diam_top = actual_bottom_diameter + wall_thickness * 2,
-                    outer_diam_bottom = actual_bottom_diameter + wall_thickness * 1,                        
+                    outer_diam_top = actual_bottom_diameter -1.5 + wall_thickness * 3 ,
+                    outer_diam_bottom = actual_bottom_diameter -1.5 + wall_thickness * 1,                        
                     height = 4,
                     pitch = 1.411,
                     tooth_angle = 60, 
                     position=[0,0,0]
                 ) { 
                     cylinder(h=height, 
-                                    d1=actual_bottom_diameter,
+                                    d1=actual_bottom_diameter-2,
                                     d2=actual_top_diameter);
 
                 };
                 translate([0,0,1])
-                    cylinder(h=height+2, d1=actual_bottom_diameter-2, d2= (level > 0) ?  next_bottom_diameter : actual_bottom_diameter);
+                    cylinder(h=height+2, d1=actual_bottom_diameter-4, d2= (level > 0) ?  next_bottom_diameter+2 : actual_bottom_diameter+2);
             };
             create_hole_pattern(actual_bottom_diameter, hole_size, wall_thickness);
         };
@@ -143,12 +143,51 @@ module complete_segment(
         
 }
 
+// Module for lid that threads onto the largest cup
+module lid_for_largest_cup() {
+    // Calculate dimensions for the largest cup (i=0)
+    largest_cup_level = 10;
+    largest_cup_bottom_diameter = get_top_diameter(len(hole_sizes)-1-largest_cup_level+1)-3*wall_thickness;
+    lid_height = 2; // Height of the lid including threads
+    lid_top_thickness = 0; // Thickness of the top plate
+    
+    // Create male threads that match what the largest cup expects
+    TaperedScrewMale(
+        outer_diam_top = largest_cup_bottom_diameter -2 + wall_thickness * 3,
+        outer_diam_bottom = largest_cup_bottom_diameter -2 + wall_thickness * 1,                        
+        height = 1,
+        pitch = 1.411,
+        tooth_angle = 60, 
+        position=[0,0,0]
+    ) { 
+        difference() {
+            // Lid body - flat top instead of tapered
+            cylinder(h=lid_height, 
+                    d1=largest_cup_bottom_diameter-2,
+                    d2=largest_cup_bottom_diameter-2);
+            
+            // Create inset plus pattern for grip
+            plus_width = 8;  // Width of each arm of the plus
+            plus_length = (largest_cup_bottom_diameter-2) * .8;  // Length of plus arms
+            plus_depth = 2;  // How deep the plus is inset
+            
+            // Horizontal bar of plus
+            translate([0, 0, lid_height])
+                cube([plus_length, plus_width, plus_depth + 0.1], center=true);
+            
+            // Vertical bar of plus
+            translate([0, 0, lid_height])
+                cube([plus_width, plus_length, plus_depth + 0.1], center=true);
+        }
+    }
+}
+
 // Render all segments with cross section
 difference() {
     union() {
         for (i = [0:len(hole_sizes)-1]) { 
             // Calculate x offset based on the maximum diameter of each segment plus some spacing
-            z_offset = i* -2* (wall_thickness) ;
+            z_offset = i* -2.4* (wall_thickness);
 
             // Calculate the bottom diameter of the next cup up (if it exists)
             next_bottom_diameter = (i < len(hole_sizes)) ? (get_top_diameter(len(hole_sizes)-1-i)-5*wall_thickness) : 0;
@@ -164,6 +203,10 @@ difference() {
                     next_bottom_diameter = next_bottom_diameter
                 );
         }
+        
+        // Add the lid positioned above the largest cup
+        translate([0, 0, -max_segment_height - 27])
+            lid_for_largest_cup();
     }
     // // Cut in half horizontally
     // translate([-500, 0, -500])
