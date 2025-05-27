@@ -12,15 +12,15 @@ helix_angle = 20;          // 90° - 70° = 20° helix angle
 
 // Configuration for ball sizes
 hole_sizes = [
-    2.38, 3.18, 3.97, 4.76, 5.56, 6.35, 7.14, 7.94, 8.73, 9.53, 10.32
+    1, 2.38, 3.18, 3.97, 4.76, 5.56, 6.35, 7.14, 7.94, 8.73, 9.53, 10.32
 ];
 
 // Segment parameters
 wall_thickness = 1;
 min_segment_height = 15;    // Minimum height (for bottom segment)
 max_segment_height = 20;    // Maximum height (for top segment)
-diameter_step = 5;         // How much diameter changes per level
-initial_diameter = 20;      // Starting diameter
+diameter_step = 6.6;         // How much diameter changes per level
+initial_diameter = 25;      // Starting diameter
 
 // Hole pattern parameters
 hex_spacing_factor = 1.8;   // Spacing between holes as multiple of hole size
@@ -115,7 +115,9 @@ module segment_circle_half(
                 translate([0,0,1])
                     cylinder(h=height+2, d1=actual_bottom_diameter-4, d2= (level > 0) ?  next_bottom_diameter+2 : actual_bottom_diameter+2);
             };
-            create_hole_pattern(actual_bottom_diameter, hole_size, wall_thickness);
+            if (level > 0) {
+                create_hole_pattern(actual_bottom_diameter, hole_size, wall_thickness);
+            }
         };
     }
      
@@ -128,7 +130,7 @@ module complete_segment(
     height,       
     hole_size,         
     is_lower = false,
-    level = 0,
+    level,
     next_bottom_diameter = 0  // Added parameter
 ) {
     segment_circle_half(
@@ -146,7 +148,7 @@ module complete_segment(
 // Module for lid that threads onto the largest cup
 module lid_for_largest_cup() {
     // Calculate dimensions for the largest cup (i=0)
-    largest_cup_level = 10;
+    largest_cup_level = 11;
     largest_cup_bottom_diameter = get_top_diameter(len(hole_sizes)-1-largest_cup_level+1)-3*wall_thickness;
     lid_height = 2; // Height of the lid including threads
     lid_top_thickness = 0; // Thickness of the top plate
@@ -187,7 +189,7 @@ difference() {
     union() {
         for (i = [0:len(hole_sizes)-1]) { 
             // Calculate x offset based on the maximum diameter of each segment plus some spacing
-            z_offset = i* -2.4* (wall_thickness);
+            z_offset = i* -2* (wall_thickness);
 
             // Calculate the bottom diameter of the next cup up (if it exists)
             next_bottom_diameter = (i < len(hole_sizes)) ? (get_top_diameter(len(hole_sizes)-1-i)-5*wall_thickness) : 0;
@@ -205,7 +207,7 @@ difference() {
         }
         
         // Add the lid positioned above the largest cup
-        translate([0, 0, -max_segment_height - 27])
+        translate([0, 0, -max_segment_height - 24.5])
             lid_for_largest_cup();
     }
     // // Cut in half horizontally
