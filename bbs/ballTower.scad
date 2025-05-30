@@ -1,14 +1,7 @@
 include <threads.scad>
 
-// Basic parameters
-$fn = 100;  // Smoothness of circles
-
-// Thread parameters
-thread_pitch = 3;           // Thread pitch in mm
-thread_height = 5;          // Height of threaded section
-thread_tolerance = 0.4;     // Clearance between threads
-thread_angle = 60;         // Standard thread angle (not wall angle)
-helix_angle = 20;          // 90° - 70° = 20° helix angle
+// Basic parameters - Use lower $fn for preview, higher for final STL
+$fn = $preview ? 16 : 32;  // 32 for preview, 100 for final render
 
 // Configuration for ball sizes
 hole_sizes = [
@@ -25,7 +18,7 @@ initial_diameter = 25;      // Starting diameter
 // Hole pattern parameters
 hex_spacing_factor = 1.8;   // Spacing between holes as multiple of hole size
 depression_size_factor = 1.1;  // Depression diameter as multiple of hole size
-depression_depth = 1;       // Depth of depression around holes
+depression_depth = 1.5;       // Depth of depression around holes
 
 // Function to calculate diameters
 function get_base_diameter(level) = 
@@ -57,7 +50,7 @@ module create_hole_pattern(diameter, hole_size, floor_thickness, is_rectangular 
             if(sqrt(x*x + y*y) <= effective_diameter/2) {  // Check against reduced diameter
                 translate([x, y, -.1]) {
                     // Depression around hole
-                    translate([0, 0, floor_thickness - depression_depth])
+                    translate([0, 0, floor_thickness])
                         cylinder(h=depression_depth + 0.1, 
                                d=hole_size * depression_size_factor);
                     
@@ -108,12 +101,12 @@ module segment_circle_half(
                     position=[0,0,0]
                 ) { 
                     cylinder(h=height, 
-                                    d1=actual_bottom_diameter-2,
-                                    d2=actual_top_diameter);
+                                    d1=actual_bottom_diameter-2.1,
+                                    d2=actual_top_diameter+2);
 
                 };
-                translate([0,0,1])
-                    cylinder(h=height+2, d1=actual_bottom_diameter-4, d2= (level > 0) ?  next_bottom_diameter+2 : actual_bottom_diameter+2);
+                translate([0,0,1.8])
+                    cylinder(h=height+2, d1=actual_bottom_diameter-6, d2= (level > 0) ?  next_bottom_diameter : actual_bottom_diameter+2);
             };
             if (level > 0) {
                 create_hole_pattern(actual_bottom_diameter, hole_size, wall_thickness);
@@ -148,16 +141,16 @@ module complete_segment(
 // Module for lid that threads onto the largest cup
 module lid_for_largest_cup() {
     // Calculate dimensions for the largest cup (i=0)
-    largest_cup_level = 11;
+    largest_cup_level = 12;
     largest_cup_bottom_diameter = get_top_diameter(len(hole_sizes)-1-largest_cup_level+1)-3*wall_thickness;
-    lid_height = 2; // Height of the lid including threads
+    lid_height = 6; // Height of the lid including threads (4x thicker: was 2, now 8)
     lid_top_thickness = 0; // Thickness of the top plate
     
     // Create male threads that match what the largest cup expects
     TaperedScrewMale(
         outer_diam_top = largest_cup_bottom_diameter -2 + wall_thickness * 3,
         outer_diam_bottom = largest_cup_bottom_diameter -2 + wall_thickness * 1,                        
-        height = 1,
+        height = 2,
         pitch = 1.411,
         tooth_angle = 60, 
         position=[0,0,0]
@@ -166,12 +159,12 @@ module lid_for_largest_cup() {
             // Lid body - flat top instead of tapered
             cylinder(h=lid_height, 
                     d1=largest_cup_bottom_diameter-2,
-                    d2=largest_cup_bottom_diameter-2);
+                    d2=largest_cup_bottom_diameter);
             
             // Create inset plus pattern for grip
             plus_width = 8;  // Width of each arm of the plus
             plus_length = (largest_cup_bottom_diameter-2) * .8;  // Length of plus arms
-            plus_depth = 2;  // How deep the plus is inset
+            plus_depth = 4;  // How deep the plus is inset
             
             // Horizontal bar of plus
             translate([0, 0, lid_height])
@@ -189,7 +182,7 @@ difference() {
     union() {
         for (i = [0:len(hole_sizes)-1]) { 
             // Calculate x offset based on the maximum diameter of each segment plus some spacing
-            z_offset = i* -2* (wall_thickness);
+            z_offset = i* -5.5* (wall_thickness);
 
             // Calculate the bottom diameter of the next cup up (if it exists)
             next_bottom_diameter = (i < len(hole_sizes)) ? (get_top_diameter(len(hole_sizes)-1-i)-5*wall_thickness) : 0;
@@ -207,7 +200,7 @@ difference() {
         }
         
         // Add the lid positioned above the largest cup
-        translate([0, 0, -max_segment_height - 24.5])
+        translate([0, 0, -max_segment_height - 68])
             lid_for_largest_cup();
     }
     // // Cut in half horizontally
