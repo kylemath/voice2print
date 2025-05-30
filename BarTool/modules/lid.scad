@@ -5,11 +5,11 @@ include <../modules/socket_storage.scad>  // Include for tool position variables
 // Lid specific parameters
 LID_OVERLAP = 5;  // How much the lid overlaps the base on each side
 LID_THICKNESS = 10;  // Total thickness of the lid
-TOOL_DEPRESSION_DEPTH = 4;  // Depth of tool depressions in lid
+TOOL_DEPRESSION_DEPTH = 8;  // Depth of tool depressions in lid
 LID_WALL_EXTRA_WIDTH = 2.5;  // Extra width for the walls (2.5mm on each side)
-LID_WALL_HEIGHT = 12;  // Wall height (adjusted to 10mm)
+LID_WALL_HEIGHT = 10;  // Wall height (adjusted to 10mm)
 LID_WALL_THICKNESS = 3;  // Wall thickness
-LID_TOLERANCE = 0.2;  // Tolerance between the lid walls and the base (0.3mm gap)
+LID_TOLERANCE = 0.1;  // Tolerance between the lid walls and the base (0.3mm gap)
 LID_CHAMFER = 2;  // Size of the chamfer on the lid's outside face
 HEX_HOLE_EXTRA_CLEARANCE = 0.5;  // Additional clearance for hex bit holes (0.5mm wider)
 HEX_HOLE_DEPTH = 9;  // Deeper hex holes (8mm)
@@ -28,11 +28,11 @@ module lid() {
             difference() {
                 union() {
                     // Main lid plate with chamfered outer face
-                    translate([0, 0, -8]) {
+                    translate([0, 0, -14]) {
                         minkowski() {
                             cube([CASE_WIDTH + LID_OVERLAP*2 + LID_WALL_EXTRA_WIDTH, 
                             CASE_DEPTH + LID_OVERLAP*2 + LID_WALL_EXTRA_WIDTH, 
-                            8], center=true);
+                            18], center=true);
                             sphere(r=LID_CHAMFER, $fn=30);
                         }
                     }
@@ -222,9 +222,9 @@ module lid_with_logo() {
         // Add logo embossing on the top side of the lid
         translate([-CASE_WIDTH, -5, 0]) {  // Match the lid translation
             rotate([180, 0, 0]) {  // Match the lid rotation
-                translate([LOGO_POSITION_X, LOGO_POSITION_Y, -6]) {
+                translate([LOGO_POSITION_X, LOGO_POSITION_Y, -215]) {
                     rotate([0, 0, LOGO_ROTATION]) {
-                        linear_extrude(height = LOGO_DEPTH + .3)
+                        linear_extrude(height = LOGO_DEPTH -1.7+200)
                         scale([LOGO_SCALE, LOGO_SCALE, 1])
                         import(file = LOGO_FILE, center = true);
                     }
@@ -236,10 +236,7 @@ module lid_with_logo() {
 
 // Module for lid with logo cutout
 module lid_minus_logo() {
-    difference() {
-        lid_with_logo();
-        logo_only();
-    }
+    lid_with_logo();
 }
 
 // // For preview

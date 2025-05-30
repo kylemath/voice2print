@@ -98,7 +98,7 @@ function get_socket_diameter(size) = SOCKET_DIAMETERS[search([size], SOCKET_SIZE
 
 // Hex Bit Parameters
 HEX_BIT_LENGTH = 25;        // Standard length for hex bits
-HEX_BIT_DIAMETER = 6.35;    // Standard 1/4" hex bit diameter
+HEX_BIT_DIAMETER = 7.05;    // Standard 1/4" hex bit diameter
 HEX_DEPRESSION = 20;        // How deep bits sit in the block
 HEX_SPACING = 3;           // Space between hex holes
 HEX_COUNT = 5;             // Number of hex bits per row

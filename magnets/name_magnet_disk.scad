@@ -1,31 +1,28 @@
 // Customizable Name Magnet Disk
 // Parameters
-names = [
-// "ANTHONY", 'OMAR', 'LEO', "ERIC",
-//  "SHER ALI", "DAVID", "JJ","JACKY",
-//  "LENO",  "JOSE", "LUCA",
-//  "LUCA", "LENO",
-"PRABHKIRAT",
-//  "EVERETT","LEVI", "TRYSTAN",
-//  "ATLAS", "MATEO",
- ]; // List of names to create disks for
+// names = ["KEIFFER",
+// ]; // List of names to create disks for
+names = ["KEIFFER", "JOSE", "LENO", "LINCOLN", "PRABH", "EVERETT",
+    "TRYSTAN", "LEVI", "JACKY", "SHERALI", "DAVID", "JJ", "LUCA", 
+    "ANTHONY", "JULIAN", "OMAR", "ERIC", "LEO"
+]; // List of names to create disks for
 
-disk_diameter = 30; // Diameter of the main disk in mm
-disk_height = 4;    // Height of the disk in mm
+disk_diameter = 40; // Diameter of the main disk in mm
+disk_height = 6;    // Height of the disk in mm
 magnet_diameter = 12; // Diameter of the magnet hole
 magnet_depth = 2.75;  // Depth of the magnet hole
-tolerance = 0.1;    // Tolerance for the magnet hole (both diameter and depth)
-text_depth = .6;    // Depth of the name engraving
-base_font_size = 3.5;    // Base size of the text for normal names
-text_thickness = 0.25; // How bold to make the text
+tolerance = 0.05;    // Tolerance for the magnet hole (both diameter and depth)
+text_depth = 1;    // Depth of the name engraving
+base_font_size = 7.5;    // Base size of the text for normal names
+text_thickness = 0.5; // How bold to make the text
 
 // Function to calculate font size based on name length
 function get_font_size(name) = 
-   base_font_size;
+   name == "LINCOLN" || name == "ANTHONY" || name == "EVERETT" || name == "KEIFFER"  || name == "SHERALI" || name == "TRYSTAN"  ? base_font_size * .75 : base_font_size;
 
 // Spacing parameters for grid layout
 spacing = disk_diameter + 2; // Space between disks
-grid_columns = 3; // Number of columns in the grid
+grid_columns = 4; // Number of columns in the grid
 
 // Main module for a single magnet disk
 module magnet_disk(name) {
@@ -37,8 +34,8 @@ module magnet_disk(name) {
         
         // Magnet hole on the bottom with tolerance
         translate([0, 0, -0.1])
-            cylinder(h=magnet_depth + tolerance * 2, 
-                    d=magnet_diameter + tolerance*2, 
+            cylinder(h=magnet_depth + tolerance, 
+                    d=magnet_diameter + tolerance, 
                     $fn=100);
         
         // Name engraving on top

@@ -8,10 +8,10 @@ include <modules/socket_storage.scad>  // For tool position variables
 include <modules/lid.scad>
 
 // Set the quality for rendering
-$fn = 50;
+$fn = 20;
 
 // Render modes
-RENDER_MODE = "logo"; // Options: "both", "logo", "lid"
+RENDER_MODE = "lid"; // Options: "both", "logo", "lid"
 
 // Model rendering based on mode
 if (RENDER_MODE == "both" || RENDER_MODE == "logo") {
