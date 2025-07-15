@@ -1,3 +1,9 @@
 *.gcode
 *.3mf
 .DS_Store 
+
+# Scanner temp and cache files
+*.obscan
+*.obmc
+IvateGlasses/sRhbIwK_wamFHZ_fs6qTl_7pg9PK/temp/
+IvateGlasses/sRhbIwK_wamFHZ_fs6qTl_7pg9PK/resources.obscan 
