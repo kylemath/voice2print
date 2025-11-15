@@ -2,13 +2,13 @@
 // Parameters
 // names = ["KEIFFER",
 // ]; // List of names to create disks for
-names = ["LEX"]; // List of names to create disks for
+names = ["","","","","","","",""]; // List of names to create disks for
 
-disk_diameter = 40; // Diameter of the main disk in mm
-disk_height = 6;    // Height of the disk in mm
+disk_diameter = 16; // Diameter of the main disk in mm
+disk_height = 5;    // Height of the disk in mm
 magnet_diameter = 12; // Diameter of the magnet hole
 magnet_depth = 2.75;  // Depth of the magnet hole
-tolerance = 0.05;    // Tolerance for the magnet hole (both diameter and depth)
+tolerance = 0.02;    // Tolerance for the magnet hole (both diameter and depth)
 text_depth = 1;    // Depth of the name engraving
 base_font_size = 7.5;    // Base size of the text for normal names
 text_thickness = 0.5; // How bold to make the text
