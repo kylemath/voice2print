@@ -186,6 +186,57 @@ Magnet holder designs and magnetic mounting systems.
 - Echo statements output dimensions during rendering
 - Printing instructions included as comments
 
+## 🌐 Online 3D Catalogue
+
+This repository includes an interactive web-based catalogue that lets you browse and preview all 3D models directly in your browser using Three.js.
+
+**🔗 [View the Online Catalogue](https://kylemath.github.io/voice2print/)**
+
+### Features
+- **Interactive 3D Viewer** - Rotate, zoom, and inspect STL models with realistic lighting and shadows
+- **Source Code Display** - View the OpenSCAD source code alongside the 3D preview
+- **Nested Collections** - Browse models organized by project folders
+- **Grid/List Views** - Switch between viewing modes
+- **Wireframe Mode** - Toggle wireframe rendering for mesh inspection
+- **Auto-Rotate** - Enable automatic rotation for presentations
+
+### Automatic Deployment
+
+The catalogue is **automatically rebuilt and deployed** when you push to GitHub:
+
+1. Push your changes (new/moved `.scad` or `.stl` files)
+2. GitHub Actions runs `generate_catalogue.py`
+3. Updated site deploys to GitHub Pages
+
+No manual regeneration needed! Just push and wait ~1 minute for the site to update.
+
+### Local Development
+
+To run the catalogue locally:
+
+```bash
+# Generate/update the models catalogue
+python generate_catalogue.py
+
+# Start a local web server
+python -m http.server 8080
+
+# Open in browser
+open http://localhost:8080
+```
+
+### Manual Catalogue Update
+
+If needed locally, regenerate with:
+
+```bash
+python generate_catalogue.py
+```
+
+This scans all folders and creates `models.json` with metadata about each model.
+
+---
+
 ## Getting Started
 
 ### Prerequisites
@@ -307,3 +358,10 @@ This is a living repository with continuous improvements. Major milestones:
 ---
 
 **Happy Voice-to-Printing!** 🎙️ → 🖨️ → 🔩
+
+## Preview
+
+<p align="center">
+  <img src="screenshot.png" alt="Project screenshot" width="720" />
+</p>
+

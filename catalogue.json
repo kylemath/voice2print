@@ -2,7 +2,7 @@
   "id": "voice2print",
   "title": "Voice2print",
   "oneLiner": "An AI-assisted parametric 3D modeling project that uses voice prompting and natural language to generate custom OpenSCAD designs and 3D printable models. This repository contains a diverse collection of functional 3D printed parts created through conversational design with AI.",
-  "demoUrl": "https://github.com/kylemath/voice2print",
+  "demoUrl": "https://kylemath.github.io/voice2print",
   "screenshot": "https://raw.githubusercontent.com/kylemath/voice2print/main/screenshot.png",
   "kind": "project",
   "categories": ["3dPrinting", "AI"],

@@ -1,0 +1,1297 @@
+{
+  "generated": "2025-12-27T14:25:05.703015",
+  "folders": {
+    "buttons": {
+      "name": "Buttons",
+      "path": "buttons",
+      "count": 6
+    },
+    "BarTool": {
+      "name": "Bartool",
+      "path": "BarTool",
+      "count": 27
+    },
+    "HVAC": {
+      "name": "Hvac",
+      "path": "HVAC",
+      "count": 3
+    },
+    "LEDs": {
+      "name": "Leds",
+      "path": "LEDs",
+      "count": 2
+    },
+    "IvateGlasses": {
+      "name": "Ivateglasses",
+      "path": "IvateGlasses",
+      "count": 5
+    },
+    "canCrush": {
+      "name": "Cancrush",
+      "path": "canCrush",
+      "count": 11
+    },
+    "magnets": {
+      "name": "Magnets",
+      "path": "magnets",
+      "count": 35
+    },
+    "basicShapes": {
+      "name": "Basicshapes",
+      "path": "basicShapes",
+      "count": 8
+    },
+    "basicParts": {
+      "name": "Basicparts",
+      "path": "basicParts",
+      "count": 11
+    },
+    "vygoatsky": {
+      "name": "Vygoatsky",
+      "path": "vygoatsky",
+      "count": 3
+    },
+    "bbs": {
+      "name": "Bbs",
+      "path": "bbs",
+      "count": 14
+    },
+    "shoes": {
+      "name": "Shoes",
+      "path": "shoes",
+      "count": 1
+    },
+    "scanner": {
+      "name": "Scanner",
+      "path": "scanner",
+      "count": 6
+    },
+    "image2Layers": {
+      "name": "Image2layers",
+      "path": "image2Layers",
+      "count": 1
+    },
+    "cookies": {
+      "name": "Cookies",
+      "path": "cookies",
+      "count": 2
+    }
+  },
+  "models": [
+    {
+      "id": "buttons_button_stl",
+      "name": "Button",
+      "folder": "buttons",
+      "path": "buttons/button.stl",
+      "type": "stl",
+      "size": 397715,
+      "modified": "2025-12-27T12:55:39.741894"
+    },
+    {
+      "id": "buttons_holder_stl",
+      "name": "Holder",
+      "folder": "buttons",
+      "path": "buttons/holder.stl",
+      "type": "stl",
+      "size": 263849,
+      "modified": "2025-12-27T12:55:39.742720"
+    },
+    {
+      "id": "buttons_tactile_button_led_scad",
+      "name": "Tactile Button Led",
+      "folder": "buttons",
+      "path": "buttons/tactile_button_led.scad",
+      "type": "scad",
+      "size": 12285,
+      "modified": "2025-12-27T12:55:39.755342"
+    },
+    {
+      "id": "buttons_tactile_button_variants_scad",
+      "name": "Tactile Button Variants",
+      "folder": "buttons",
+      "path": "buttons/tactile_button_variants.scad",
+      "type": "scad",
+      "size": 14080,
+      "modified": "2025-12-27T12:55:39.755457"
+    },
+    {
+      "id": "buttons_tactile_switch_adapter_scad",
+      "name": "Tactile Switch Adapter",
+      "folder": "buttons",
+      "path": "buttons/tactile_switch_adapter.scad",
+      "type": "scad",
+      "size": 4159,
+      "modified": "2025-12-27T12:55:39.755654"
+    },
+    {
+      "id": "buttons_tactile_switch_adapter_stl",
+      "name": "Tactile Switch Adapter",
+      "folder": "buttons",
+      "path": "buttons/tactile_switch_adapter.stl",
+      "type": "stl",
+      "size": 106084,
+      "modified": "2025-12-27T12:55:39.755784"
+    },
+    {
+      "id": "BarTool_config_scad",
+      "name": "Config",
+      "folder": "BarTool",
+      "path": "BarTool/config.scad",
+      "type": "scad",
+      "size": 5196,
+      "modified": "2025-12-27T12:55:39.742297"
+    },
+    {
+      "id": "BarTool_logo_emboss_Logo_scad",
+      "name": "Logo Emboss Logo",
+      "folder": "BarTool",
+      "path": "BarTool/logo_emboss Logo.scad",
+      "type": "scad",
+      "size": 1535,
+      "modified": "2025-12-27T12:55:39.435787"
+    },
+    {
+      "id": "BarTool_logo_emboss_scad",
+      "name": "Logo Emboss",
+      "folder": "BarTool",
+      "path": "BarTool/logo_emboss.scad",
+      "type": "scad",
+      "size": 1535,
+      "modified": "2025-05-17T13:26:12.394499"
+    },
+    {
+      "id": "BarTool_main_scad",
+      "name": "Main",
+      "folder": "BarTool",
+      "path": "BarTool/main.scad",
+      "type": "scad",
+      "size": 860,
+      "modified": "2025-12-27T12:55:39.435908"
+    },
+    {
+      "id": "BarTool_padpak_test_scad",
+      "name": "Padpak Test",
+      "folder": "BarTool",
+      "path": "BarTool/padpak_test.scad",
+      "type": "scad",
+      "size": 1122,
+      "modified": "2025-05-17T13:26:12.395108"
+    },
+    {
+      "id": "BarTool_test_logo_scad",
+      "name": "Test Logo",
+      "folder": "BarTool",
+      "path": "BarTool/test_logo.scad",
+      "type": "scad",
+      "size": 773,
+      "modified": "2025-05-17T13:26:12.415657"
+    },
+    {
+      "id": "BarTool_handlebar_scad",
+      "name": "Handlebar",
+      "folder": "BarTool",
+      "path": "BarTool/modules/handlebar.scad",
+      "type": "scad",
+      "size": 2224,
+      "modified": "2025-05-17T13:26:12.394657"
+    },
+    {
+      "id": "BarTool_hex_storage_scad",
+      "name": "Hex Storage",
+      "folder": "BarTool",
+      "path": "BarTool/modules/hex_storage.scad",
+      "type": "scad",
+      "size": 1315,
+      "modified": "2025-05-17T13:26:12.394698"
+    },
+    {
+      "id": "BarTool_lid_scad",
+      "name": "Lid",
+      "folder": "BarTool",
+      "path": "BarTool/modules/lid.scad",
+      "type": "scad",
+      "size": 11973,
+      "modified": "2025-12-27T12:55:39.436156"
+    },
+    {
+      "id": "BarTool_middle_spacer_scad",
+      "name": "Middle Spacer",
+      "folder": "BarTool",
+      "path": "BarTool/modules/middle_spacer.scad",
+      "type": "scad",
+      "size": 668,
+      "modified": "2025-05-17T13:26:12.394921"
+    },
+    {
+      "id": "BarTool_socket_storage_scad",
+      "name": "Socket Storage",
+      "folder": "BarTool",
+      "path": "BarTool/modules/socket_storage.scad",
+      "type": "scad",
+      "size": 9570,
+      "modified": "2025-05-17T13:26:12.395062"
+    },
+    {
+      "id": "BarTool_barTool_stl",
+      "name": "Bartool",
+      "folder": "BarTool",
+      "path": "BarTool/stls/barTool.stl",
+      "type": "stl",
+      "size": 349884,
+      "modified": "2025-05-17T13:26:12.395609"
+    },
+    {
+      "id": "BarTool_barTool1.0_stl",
+      "name": "Bartool1.0",
+      "folder": "BarTool",
+      "path": "BarTool/stls/barTool1.0.stl",
+      "type": "stl",
+      "size": 1669084,
+      "modified": "2025-05-17T13:26:12.398698"
+    },
+    {
+      "id": "BarTool_barTool2.0_stl",
+      "name": "Bartool2.0",
+      "folder": "BarTool",
+      "path": "BarTool/stls/barTool2.0.stl",
+      "type": "stl",
+      "size": 3265284,
+      "modified": "2025-05-17T13:26:12.400750"
+    },
+    {
+      "id": "BarTool_barTool2.1_stl",
+      "name": "Bartool2.1",
+      "folder": "BarTool",
+      "path": "BarTool/stls/barTool2.1.stl",
+      "type": "stl",
+      "size": 3318084,
+      "modified": "2025-05-17T13:26:12.402017"
+    },
+    {
+      "id": "BarTool_barTool2.1_base_stl",
+      "name": "Bartool2.1 Base",
+      "folder": "BarTool",
+      "path": "BarTool/stls/barTool2.1_base.stl",
+      "type": "stl",
+      "size": 1733084,
+      "modified": "2025-05-17T13:26:12.403912"
+    },
+    {
+      "id": "BarTool_barTool2.1_lid_stl",
+      "name": "Bartool2.1 Lid",
+      "folder": "BarTool",
+      "path": "BarTool/stls/barTool2.1_lid.stl",
+      "type": "stl",
+      "size": 1585084,
+      "modified": "2025-05-17T13:26:12.405734"
+    },
+    {
+      "id": "BarTool_barTool2.2_base_stl",
+      "name": "Bartool2.2 Base",
+      "folder": "BarTool",
+      "path": "BarTool/stls/barTool2.2_base.stl",
+      "type": "stl",
+      "size": 1733084,
+      "modified": "2025-05-17T13:26:12.406444"
+    },
+    {
+      "id": "BarTool_barTool2.2_lid_stl",
+      "name": "Bartool2.2 Lid",
+      "folder": "BarTool",
+      "path": "BarTool/stls/barTool2.2_lid.stl",
+      "type": "stl",
+      "size": 1551084,
+      "modified": "2025-05-17T13:26:12.408667"
+    },
+    {
+      "id": "BarTool_barTool3.1_base_stl",
+      "name": "Bartool3.1 Base",
+      "folder": "BarTool",
+      "path": "BarTool/stls/barTool3.1_base.stl",
+      "type": "stl",
+      "size": 1733084,
+      "modified": "2025-12-27T12:55:39.437937"
+    },
+    {
+      "id": "BarTool_barTool3.1_lid_logocutout_stl",
+      "name": "Bartool3.1 Lid Logocutout",
+      "folder": "BarTool",
+      "path": "BarTool/stls/barTool3.1_lid_logocutout.stl",
+      "type": "stl",
+      "size": 2284484,
+      "modified": "2025-12-27T12:55:39.440075"
+    },
+    {
+      "id": "BarTool_barTool3.2_lid_logocutout_stl",
+      "name": "Bartool3.2 Lid Logocutout",
+      "folder": "BarTool",
+      "path": "BarTool/stls/barTool3.2_lid_logocutout.stl",
+      "type": "stl",
+      "size": 2275684,
+      "modified": "2025-12-27T12:55:39.444714"
+    },
+    {
+      "id": "BarTool_barTool3.3_lid_logocutout_stl",
+      "name": "Bartool3.3 Lid Logocutout",
+      "folder": "BarTool",
+      "path": "BarTool/stls/barTool3.3_lid_logocutout.stl",
+      "type": "stl",
+      "size": 2276284,
+      "modified": "2025-12-27T12:55:39.445731"
+    },
+    {
+      "id": "BarTool_barTool3.4_lid_logocutout_stl",
+      "name": "Bartool3.4 Lid Logocutout",
+      "folder": "BarTool",
+      "path": "BarTool/stls/barTool3.4_lid_logocutout.stl",
+      "type": "stl",
+      "size": 2451684,
+      "modified": "2025-12-27T12:55:39.446914"
+    },
+    {
+      "id": "BarTool_barTool3_lid_LogoCutout_stl",
+      "name": "Bartool3 Lid Logocutout",
+      "folder": "BarTool",
+      "path": "BarTool/stls/barTool3_lid_LogoCutout.stl",
+      "type": "stl",
+      "size": 2448484,
+      "modified": "2025-12-27T12:55:39.453683"
+    },
+    {
+      "id": "BarTool_barTool3_lid_LogoOnly_stl",
+      "name": "Bartool3 Lid Logoonly",
+      "folder": "BarTool",
+      "path": "BarTool/stls/barTool3_lid_LogoOnly.stl",
+      "type": "stl",
+      "size": 879484,
+      "modified": "2025-05-17T13:26:12.410531"
+    },
+    {
+      "id": "BarTool_barToolv0.2_stl",
+      "name": "Bartoolv0.2",
+      "folder": "BarTool",
+      "path": "BarTool/stls/barToolv0.2.stl",
+      "type": "stl",
+      "size": 460484,
+      "modified": "2025-05-17T13:26:12.414093"
+    },
+    {
+      "id": "HVAC_airFilterTest_scad",
+      "name": "Airfiltertest",
+      "folder": "HVAC",
+      "path": "HVAC/airFilterTest.scad",
+      "type": "scad",
+      "size": 1404,
+      "modified": "2025-12-27T14:04:19.121206"
+    },
+    {
+      "id": "HVAC_air_intake_adapter_scad",
+      "name": "Air Intake Adapter",
+      "folder": "HVAC",
+      "path": "HVAC/air_intake_adapter.scad",
+      "type": "scad",
+      "size": 7605,
+      "modified": "2025-12-27T12:55:39.741096"
+    },
+    {
+      "id": "HVAC_y_splitter_6to4_scad",
+      "name": "Y Splitter 6to4",
+      "folder": "HVAC",
+      "path": "HVAC/y_splitter_6to4.scad",
+      "type": "scad",
+      "size": 5424,
+      "modified": "2025-12-27T12:55:39.865509"
+    },
+    {
+      "id": "LEDs_led_sign_scad",
+      "name": "Led Sign",
+      "folder": "LEDs",
+      "path": "LEDs/led_sign.scad",
+      "type": "scad",
+      "size": 7822,
+      "modified": "2025-12-27T12:55:39.742909"
+    },
+    {
+      "id": "LEDs_led_sign_stl",
+      "name": "Led Sign",
+      "folder": "LEDs",
+      "path": "LEDs/led_sign.stl",
+      "type": "stl",
+      "size": 78284,
+      "modified": "2025-12-27T12:55:39.743036"
+    },
+    {
+      "id": "IvateGlasses_IvateGlasses_stl",
+      "name": "Ivateglasses",
+      "folder": "IvateGlasses",
+      "path": "IvateGlasses/IvateGlasses.stl",
+      "type": "stl",
+      "size": 49242884,
+      "modified": "2025-12-27T12:55:39.604194"
+    },
+    {
+      "id": "IvateGlasses_IvateGlassesV2_stl",
+      "name": "Ivateglassesv2",
+      "folder": "IvateGlasses",
+      "path": "IvateGlasses/IvateGlassesV2.stl",
+      "type": "stl",
+      "size": 30267684,
+      "modified": "2025-12-27T12:55:39.652040"
+    },
+    {
+      "id": "IvateGlasses_glasses_scad",
+      "name": "Glasses",
+      "folder": "IvateGlasses",
+      "path": "IvateGlasses/glasses.scad",
+      "type": "scad",
+      "size": 3211,
+      "modified": "2025-12-27T12:55:39.742416"
+    },
+    {
+      "id": "IvateGlasses_glasses_stl",
+      "name": "Glasses",
+      "folder": "IvateGlasses",
+      "path": "IvateGlasses/glasses.stl",
+      "type": "stl",
+      "size": 115884,
+      "modified": "2025-12-27T12:55:39.742551"
+    },
+    {
+      "id": "IvateGlasses_modify_glasses_scad",
+      "name": "Modify Glasses",
+      "folder": "IvateGlasses",
+      "path": "IvateGlasses/modify_glasses.scad",
+      "type": "scad",
+      "size": 282,
+      "modified": "2025-12-27T12:55:39.653955"
+    },
+    {
+      "id": "canCrush_CrusherTop_stl",
+      "name": "Crushertop",
+      "folder": "canCrush",
+      "path": "canCrush/CrusherTop.stl",
+      "type": "stl",
+      "size": 311284,
+      "modified": "2025-05-17T13:26:12.457277"
+    },
+    {
+      "id": "canCrush_CrusherTopCommercialTube_stl",
+      "name": "Crushertopcommercialtube",
+      "folder": "canCrush",
+      "path": "canCrush/CrusherTopCommercialTube.stl",
+      "type": "stl",
+      "size": 366684,
+      "modified": "2025-05-17T13:26:12.457728"
+    },
+    {
+      "id": "canCrush_TubeBottom_scad",
+      "name": "Tubebottom",
+      "folder": "canCrush",
+      "path": "canCrush/TubeBottom.scad",
+      "type": "scad",
+      "size": 686,
+      "modified": "2025-05-17T13:26:12.457793"
+    },
+    {
+      "id": "canCrush_TubeBottom_stl",
+      "name": "Tubebottom",
+      "folder": "canCrush",
+      "path": "canCrush/TubeBottom.stl",
+      "type": "stl",
+      "size": 92184,
+      "modified": "2025-05-17T13:26:12.457966"
+    },
+    {
+      "id": "canCrush_TubeBottom_narrowOutlet_stl",
+      "name": "Tubebottom Narrowoutlet",
+      "folder": "canCrush",
+      "path": "canCrush/TubeBottom_narrowOutlet.stl",
+      "type": "stl",
+      "size": 123484,
+      "modified": "2025-05-17T13:26:12.458157"
+    },
+    {
+      "id": "canCrush_TubeButton_Narrow_AirPort_scad",
+      "name": "Tubebutton Narrow Airport",
+      "folder": "canCrush",
+      "path": "canCrush/TubeButton_Narrow_AirPort.scad",
+      "type": "scad",
+      "size": 2851,
+      "modified": "2025-05-17T13:26:12.458227"
+    },
+    {
+      "id": "canCrush_TubeButton_Narrow_AirPort_stl",
+      "name": "Tubebutton Narrow Airport",
+      "folder": "canCrush",
+      "path": "canCrush/TubeButton_Narrow_AirPort.stl",
+      "type": "stl",
+      "size": 2579884,
+      "modified": "2025-05-17T13:26:12.460972"
+    },
+    {
+      "id": "canCrush_TubeButton_Narrow_AirPort_v2_stl",
+      "name": "Tubebutton Narrow Airport V2",
+      "folder": "canCrush",
+      "path": "canCrush/TubeButton_Narrow_AirPort_v2.stl",
+      "type": "stl",
+      "size": 2402884,
+      "modified": "2025-05-17T13:26:12.464470"
+    },
+    {
+      "id": "canCrush_TubeButton_Narrow_AirPort_v3_stl",
+      "name": "Tubebutton Narrow Airport V3",
+      "folder": "canCrush",
+      "path": "canCrush/TubeButton_Narrow_AirPort_v3.stl",
+      "type": "stl",
+      "size": 2437284,
+      "modified": "2025-05-17T13:26:12.465342"
+    },
+    {
+      "id": "canCrush_crusher_modifications_scad",
+      "name": "Crusher Modifications",
+      "folder": "canCrush",
+      "path": "canCrush/crusher_modifications.scad",
+      "type": "scad",
+      "size": 2747,
+      "modified": "2025-05-17T13:26:12.465486"
+    },
+    {
+      "id": "canCrush_threads_scad",
+      "name": "Threads",
+      "folder": "canCrush",
+      "path": "canCrush/threads.scad",
+      "type": "scad",
+      "size": 20714,
+      "modified": "2025-05-17T13:26:12.465533"
+    },
+    {
+      "id": "magnets_12Names_stl",
+      "name": "12names",
+      "folder": "magnets",
+      "path": "magnets/12Names.stl",
+      "type": "stl",
+      "size": 793684,
+      "modified": "2025-05-17T13:26:12.466401"
+    },
+    {
+      "id": "magnets_12Names2_stl",
+      "name": "12names2",
+      "folder": "magnets",
+      "path": "magnets/12Names2.stl",
+      "type": "stl",
+      "size": 780684,
+      "modified": "2025-05-17T13:26:12.468363"
+    },
+    {
+      "id": "magnets_3A_stl",
+      "name": "3a",
+      "folder": "magnets",
+      "path": "magnets/3A.stl",
+      "type": "stl",
+      "size": 202284,
+      "modified": "2025-05-17T13:26:12.469054"
+    },
+    {
+      "id": "magnets_8_stl",
+      "name": "8",
+      "folder": "magnets",
+      "path": "magnets/8.stl",
+      "type": "stl",
+      "size": 553484,
+      "modified": "2025-05-17T13:26:12.469597"
+    },
+    {
+      "id": "magnets_Jacky_stl",
+      "name": "Jacky",
+      "folder": "magnets",
+      "path": "magnets/Jacky.stl",
+      "type": "stl",
+      "size": 77084,
+      "modified": "2025-05-17T13:26:12.469995"
+    },
+    {
+      "id": "magnets_Jose_stl",
+      "name": "Jose",
+      "folder": "magnets",
+      "path": "magnets/Jose.stl",
+      "type": "stl",
+      "size": 99884,
+      "modified": "2025-12-27T12:55:39.743532"
+    },
+    {
+      "id": "magnets_Lex_stl",
+      "name": "Lex",
+      "folder": "magnets",
+      "path": "magnets/Lex.stl",
+      "type": "stl",
+      "size": 263949,
+      "modified": "2025-12-27T12:55:39.743818"
+    },
+    {
+      "id": "magnets_Luca_stl",
+      "name": "Luca",
+      "folder": "magnets",
+      "path": "magnets/Luca.stl",
+      "type": "stl",
+      "size": 75084,
+      "modified": "2025-05-17T13:26:12.470326"
+    },
+    {
+      "id": "magnets_LucaLeno_stl",
+      "name": "Lucaleno",
+      "folder": "magnets",
+      "path": "magnets/LucaLeno.stl",
+      "type": "stl",
+      "size": 143884,
+      "modified": "2025-05-17T13:26:12.470948"
+    },
+    {
+      "id": "magnets_Trystan_stl",
+      "name": "Trystan",
+      "folder": "magnets",
+      "path": "magnets/Trystan.stl",
+      "type": "stl",
+      "size": 86484,
+      "modified": "2025-05-17T13:26:12.471087"
+    },
+    {
+      "id": "magnets_abdelZavier_stl",
+      "name": "Abdelzavier",
+      "folder": "magnets",
+      "path": "magnets/abdelZavier.stl",
+      "type": "stl",
+      "size": 148484,
+      "modified": "2025-12-27T12:55:39.744029"
+    },
+    {
+      "id": "magnets_alex_stl",
+      "name": "Alex",
+      "folder": "magnets",
+      "path": "magnets/alex.stl",
+      "type": "stl",
+      "size": 283491,
+      "modified": "2025-12-27T12:55:39.744449"
+    },
+    {
+      "id": "magnets_anthony_stl",
+      "name": "Anthony",
+      "folder": "magnets",
+      "path": "magnets/anthony.stl",
+      "type": "stl",
+      "size": 75284,
+      "modified": "2025-05-17T13:26:12.471193"
+    },
+    {
+      "id": "magnets_everettLevi_stl",
+      "name": "Everettlevi",
+      "folder": "magnets",
+      "path": "magnets/everettLevi.stl",
+      "type": "stl",
+      "size": 120084,
+      "modified": "2025-05-17T13:26:12.471343"
+    },
+    {
+      "id": "magnets_jackyKeyf2_stl",
+      "name": "Jackykeyf2",
+      "folder": "magnets",
+      "path": "magnets/jackyKeyf2.stl",
+      "type": "stl",
+      "size": 144684,
+      "modified": "2025-05-17T13:26:12.471511"
+    },
+    {
+      "id": "magnets_jackyKeyfer_stl",
+      "name": "Jackykeyfer",
+      "folder": "magnets",
+      "path": "magnets/jackyKeyfer.stl",
+      "type": "stl",
+      "size": 144484,
+      "modified": "2025-05-17T13:26:12.471692"
+    },
+    {
+      "id": "magnets_joseLenoLincolnDavid_stl",
+      "name": "Joselenolincolndavid",
+      "folder": "magnets",
+      "path": "magnets/joseLenoLincolnDavid.stl",
+      "type": "stl",
+      "size": 315884,
+      "modified": "2025-12-27T12:55:39.744789"
+    },
+    {
+      "id": "magnets_keiferJulian_stl",
+      "name": "Keiferjulian",
+      "folder": "magnets",
+      "path": "magnets/keiferJulian.stl",
+      "type": "stl",
+      "size": 136084,
+      "modified": "2025-05-17T13:26:12.471832"
+    },
+    {
+      "id": "magnets_keyferbig_stl",
+      "name": "Keyferbig",
+      "folder": "magnets",
+      "path": "magnets/keyferbig.stl",
+      "type": "stl",
+      "size": 71284,
+      "modified": "2025-12-27T12:55:39.745166"
+    },
+    {
+      "id": "magnets_kieffer_stl",
+      "name": "Kieffer",
+      "folder": "magnets",
+      "path": "magnets/kieffer.stl",
+      "type": "stl",
+      "size": 68884,
+      "modified": "2025-05-17T13:26:12.471976"
+    },
+    {
+      "id": "magnets_kiefferJulian_stl",
+      "name": "Kiefferjulian",
+      "folder": "magnets",
+      "path": "magnets/kiefferJulian.stl",
+      "type": "stl",
+      "size": 136084,
+      "modified": "2025-05-17T13:26:12.472135"
+    },
+    {
+      "id": "magnets_leno,easton,caslo,ethan_stl",
+      "name": "Leno,easton,caslo,ethan",
+      "folder": "magnets",
+      "path": "magnets/leno,easton,caslo,ethan.stl",
+      "type": "stl",
+      "size": 299684,
+      "modified": "2025-05-17T13:26:12.472411"
+    },
+    {
+      "id": "magnets_lucaNew_stl",
+      "name": "Lucanew",
+      "folder": "magnets",
+      "path": "magnets/lucaNew.stl",
+      "type": "stl",
+      "size": 81684,
+      "modified": "2025-12-27T12:55:39.745313"
+    },
+    {
+      "id": "magnets_miniMag_scad",
+      "name": "Minimag",
+      "folder": "magnets",
+      "path": "magnets/miniMag.scad",
+      "type": "scad",
+      "size": 2312,
+      "modified": "2025-12-27T12:55:39.745391"
+    },
+    {
+      "id": "magnets_miniMag_stl",
+      "name": "Minimag",
+      "folder": "magnets",
+      "path": "magnets/miniMag.stl",
+      "type": "stl",
+      "size": 1497234,
+      "modified": "2025-12-27T12:55:39.746243"
+    },
+    {
+      "id": "magnets_name_magnet_disk_copy_scad",
+      "name": "Name Magnet Disk Copy",
+      "folder": "magnets",
+      "path": "magnets/name_magnet_disk copy.scad",
+      "type": "scad",
+      "size": 2294,
+      "modified": "2025-12-27T12:55:39.746336"
+    },
+    {
+      "id": "magnets_name_magnet_disk_scad",
+      "name": "Name Magnet Disk",
+      "folder": "magnets",
+      "path": "magnets/name_magnet_disk.scad",
+      "type": "scad",
+      "size": 2461,
+      "modified": "2025-12-27T12:55:39.746628"
+    },
+    {
+      "id": "magnets_name_magnet_disk_stl",
+      "name": "Name Magnet Disk",
+      "folder": "magnets",
+      "path": "magnets/name_magnet_disk.stl",
+      "type": "stl",
+      "size": 273484,
+      "modified": "2025-05-17T13:26:12.472712"
+    },
+    {
+      "id": "magnets_name_magnet_disk6_stl",
+      "name": "Name Magnet Disk6",
+      "folder": "magnets",
+      "path": "magnets/name_magnet_disk6.stl",
+      "type": "stl",
+      "size": 421484,
+      "modified": "2025-05-17T13:26:12.473052"
+    },
+    {
+      "id": "magnets_name_magnet_disk_ALLBIG_stl",
+      "name": "Name Magnet Disk Allbig",
+      "folder": "magnets",
+      "path": "magnets/name_magnet_disk_ALLBIG.stl",
+      "type": "stl",
+      "size": 1355484,
+      "modified": "2025-12-27T12:55:39.747819"
+    },
+    {
+      "id": "magnets_name_magnet_disk_ALLBIG_v2_stl",
+      "name": "Name Magnet Disk Allbig V2",
+      "folder": "magnets",
+      "path": "magnets/name_magnet_disk_ALLBIG_v2.stl",
+      "type": "stl",
+      "size": 1426084,
+      "modified": "2025-12-27T12:55:39.749267"
+    },
+    {
+      "id": "magnets_omarLeoEric_stl",
+      "name": "Omarleoeric",
+      "folder": "magnets",
+      "path": "magnets/omarLeoEric.stl",
+      "type": "stl",
+      "size": 214684,
+      "modified": "2025-05-17T13:26:12.473266"
+    },
+    {
+      "id": "magnets_perkeet_stl",
+      "name": "Perkeet",
+      "folder": "magnets",
+      "path": "magnets/perkeet.stl",
+      "type": "stl",
+      "size": 95084,
+      "modified": "2025-05-17T13:26:12.473428"
+    },
+    {
+      "id": "magnets_prabh_stl",
+      "name": "Prabh",
+      "folder": "magnets",
+      "path": "magnets/prabh.stl",
+      "type": "stl",
+      "size": 91684,
+      "modified": "2025-05-17T13:26:12.473545"
+    },
+    {
+      "id": "magnets_vahidJacekAlex_stl",
+      "name": "Vahidjacekalex",
+      "folder": "magnets",
+      "path": "magnets/vahidJacekAlex.stl",
+      "type": "stl",
+      "size": 1064913,
+      "modified": "2025-12-27T12:55:39.749933"
+    },
+    {
+      "id": "basicShapes_cylinder_150cm_scad",
+      "name": "Cylinder 150cm",
+      "folder": "basicShapes",
+      "path": "basicShapes/cylinder_150cm.scad",
+      "type": "scad",
+      "size": 395,
+      "modified": "2025-12-27T12:55:39.742359"
+    },
+    {
+      "id": "basicShapes_rectangle_373x235x15_scad",
+      "name": "Rectangle 373x235x15",
+      "folder": "basicShapes",
+      "path": "basicShapes/rectangle_373x235x15.scad",
+      "type": "scad",
+      "size": 1518,
+      "modified": "2025-12-27T12:55:39.752008"
+    },
+    {
+      "id": "basicShapes_rectangle_5x5cm_scad",
+      "name": "Rectangle 5x5cm",
+      "folder": "basicShapes",
+      "path": "basicShapes/rectangle_5x5cm.scad",
+      "type": "scad",
+      "size": 1331,
+      "modified": "2025-12-27T12:55:39.752070"
+    },
+    {
+      "id": "basicShapes_rectangle_5x5cm_stl",
+      "name": "Rectangle 5x5cm",
+      "folder": "basicShapes",
+      "path": "basicShapes/rectangle_5x5cm.stl",
+      "type": "stl",
+      "size": 24284,
+      "modified": "2025-12-27T14:10:26.329223"
+    },
+    {
+      "id": "basicShapes_rectangle_5x5cmV3_stl",
+      "name": "Rectangle 5x5cmv3",
+      "folder": "basicShapes",
+      "path": "basicShapes/rectangle_5x5cmV3.stl",
+      "type": "stl",
+      "size": 47484,
+      "modified": "2025-12-27T14:10:26.338125"
+    },
+    {
+      "id": "basicShapes_rectangle_5x5cm_V2_stl",
+      "name": "Rectangle 5x5cm V2",
+      "folder": "basicShapes",
+      "path": "basicShapes/rectangle_5x5cm_V2.stl",
+      "type": "stl",
+      "size": 47484,
+      "modified": "2025-12-27T14:10:26.327384"
+    },
+    {
+      "id": "basicShapes_rectangle_5x5cm_bevel_stl",
+      "name": "Rectangle 5x5cm Bevel",
+      "folder": "basicShapes",
+      "path": "basicShapes/rectangle_5x5cm_bevel.stl",
+      "type": "stl",
+      "size": 47484,
+      "modified": "2025-12-27T14:10:26.324692"
+    },
+    {
+      "id": "basicShapes_test0.3_stl",
+      "name": "Test0.3",
+      "folder": "basicShapes",
+      "path": "basicShapes/test0.3.stl",
+      "type": "stl",
+      "size": 1441084,
+      "modified": "2025-12-27T14:10:26.341378"
+    },
+    {
+      "id": "basicParts_Clothespin_teeth_stl",
+      "name": "Clothespin Teeth",
+      "folder": "basicParts",
+      "path": "basicParts/Clothespin_teeth.stl",
+      "type": "stl",
+      "size": 134784,
+      "modified": "2025-12-27T12:55:39.454755"
+    },
+    {
+      "id": "basicParts_bearing_washer_scad",
+      "name": "Bearing Washer",
+      "folder": "basicParts",
+      "path": "basicParts/bearing_washer.scad",
+      "type": "scad",
+      "size": 762,
+      "modified": "2025-12-27T12:55:39.741269"
+    },
+    {
+      "id": "basicParts_bearing_washer_stl",
+      "name": "Bearing Washer",
+      "folder": "basicParts",
+      "path": "basicParts/bearing_washer.stl",
+      "type": "stl",
+      "size": 40084,
+      "modified": "2025-12-27T12:55:39.741355"
+    },
+    {
+      "id": "basicParts_bearing_washer_wider_stl",
+      "name": "Bearing Washer Wider",
+      "folder": "basicParts",
+      "path": "basicParts/bearing_washer_wider.stl",
+      "type": "stl",
+      "size": 40084,
+      "modified": "2025-12-27T12:55:39.741455"
+    },
+    {
+      "id": "basicParts_clipboard_scad",
+      "name": "Clipboard",
+      "folder": "basicParts",
+      "path": "basicParts/clipboard.scad",
+      "type": "scad",
+      "size": 2497,
+      "modified": "2025-12-27T12:55:39.742033"
+    },
+    {
+      "id": "basicParts_clipboard_stl",
+      "name": "Clipboard",
+      "folder": "basicParts",
+      "path": "basicParts/clipboard.stl",
+      "type": "stl",
+      "size": 14484,
+      "modified": "2025-12-27T12:55:39.742152"
+    },
+    {
+      "id": "basicParts_comb_scad",
+      "name": "Comb",
+      "folder": "basicParts",
+      "path": "basicParts/comb.scad",
+      "type": "scad",
+      "size": 4423,
+      "modified": "2025-12-27T12:55:39.742224"
+    },
+    {
+      "id": "basicParts_turning_knob_hex4_scad",
+      "name": "Turning Knob Hex4",
+      "folder": "basicParts",
+      "path": "basicParts/turning_knob_hex4.scad",
+      "type": "scad",
+      "size": 2928,
+      "modified": "2025-12-27T12:55:39.755876"
+    },
+    {
+      "id": "basicParts_turning_knob_hex4_stl",
+      "name": "Turning Knob Hex4",
+      "folder": "basicParts",
+      "path": "basicParts/turning_knob_hex4.stl",
+      "type": "stl",
+      "size": 62684,
+      "modified": "2025-12-27T12:55:39.755968"
+    },
+    {
+      "id": "basicParts_turning_knob_m6_scad",
+      "name": "Turning Knob M6",
+      "folder": "basicParts",
+      "path": "basicParts/turning_knob_m6.scad",
+      "type": "scad",
+      "size": 2321,
+      "modified": "2025-12-27T12:55:39.756033"
+    },
+    {
+      "id": "basicParts_turning_knob_m6_stl",
+      "name": "Turning Knob M6",
+      "folder": "basicParts",
+      "path": "basicParts/turning_knob_m6.stl",
+      "type": "stl",
+      "size": 497784,
+      "modified": "2025-12-27T12:55:39.756659"
+    },
+    {
+      "id": "vygoatsky_plaque_scad",
+      "name": "Plaque",
+      "folder": "vygoatsky",
+      "path": "vygoatsky/plaque.scad",
+      "type": "scad",
+      "size": 6161,
+      "modified": "2025-12-27T12:55:39.757059"
+    },
+    {
+      "id": "vygoatsky_plaque_stl",
+      "name": "Plaque",
+      "folder": "vygoatsky",
+      "path": "vygoatsky/plaque.stl",
+      "type": "stl",
+      "size": 40101791,
+      "modified": "2025-12-27T12:55:39.792980"
+    },
+    {
+      "id": "vygoatsky_plaque2_stl",
+      "name": "Plaque2",
+      "folder": "vygoatsky",
+      "path": "vygoatsky/plaque2.stl",
+      "type": "stl",
+      "size": 71360661,
+      "modified": "2025-12-27T12:55:39.862178"
+    },
+    {
+      "id": "bbs_BallSorter_scad",
+      "name": "Ballsorter",
+      "folder": "bbs",
+      "path": "bbs/BallSorter.scad",
+      "type": "scad",
+      "size": 18950,
+      "modified": "2025-05-17T13:26:12.415790"
+    },
+    {
+      "id": "bbs_BallSorter_stl",
+      "name": "Ballsorter",
+      "folder": "bbs",
+      "path": "bbs/BallSorter.stl",
+      "type": "stl",
+      "size": 484284,
+      "modified": "2025-05-17T13:26:12.416258"
+    },
+    {
+      "id": "bbs_BallSorterLid_V2_scad",
+      "name": "Ballsorterlid V2",
+      "folder": "bbs",
+      "path": "bbs/BallSorterLid_V2.scad",
+      "type": "scad",
+      "size": 6744,
+      "modified": "2025-05-17T13:26:12.416357"
+    },
+    {
+      "id": "bbs_BallSorterLid_V2_stl",
+      "name": "Ballsorterlid V2",
+      "folder": "bbs",
+      "path": "bbs/BallSorterLid_V2.stl",
+      "type": "stl",
+      "size": 71184,
+      "modified": "2025-05-17T13:26:12.416466"
+    },
+    {
+      "id": "bbs_BallSorter_V2_scad",
+      "name": "Ballsorter V2",
+      "folder": "bbs",
+      "path": "bbs/BallSorter_V2.scad",
+      "type": "scad",
+      "size": 19406,
+      "modified": "2025-05-17T13:26:12.416558"
+    },
+    {
+      "id": "bbs_BallSorter_V2_stl",
+      "name": "Ballsorter V2",
+      "folder": "bbs",
+      "path": "bbs/BallSorter_V2.stl",
+      "type": "stl",
+      "size": 489284,
+      "modified": "2025-05-17T13:26:12.417174"
+    },
+    {
+      "id": "bbs_ballTower_scad",
+      "name": "Balltower",
+      "folder": "bbs",
+      "path": "bbs/ballTower.scad",
+      "type": "scad",
+      "size": 7950,
+      "modified": "2025-05-29T14:19:36.941566"
+    },
+    {
+      "id": "bbs_ballTowerV10_stl",
+      "name": "Balltowerv10",
+      "folder": "bbs",
+      "path": "bbs/ballTowerV10.stl",
+      "type": "stl",
+      "size": 16294184,
+      "modified": "2025-05-19T19:09:59.751535"
+    },
+    {
+      "id": "bbs_ballTowerV10_Full_stl",
+      "name": "Balltowerv10 Full",
+      "folder": "bbs",
+      "path": "bbs/ballTowerV10_Full.stl",
+      "type": "stl",
+      "size": 36660184,
+      "modified": "2025-05-21T01:05:18.598343"
+    },
+    {
+      "id": "bbs_ballTowerV10_Full_smallest2_stl",
+      "name": "Balltowerv10 Full Smallest2",
+      "folder": "bbs",
+      "path": "bbs/ballTowerV10_Full_smallest2.stl",
+      "type": "stl",
+      "size": 3647784,
+      "modified": "2025-05-20T12:58:13.141956"
+    },
+    {
+      "id": "bbs_ballTowerV11_stl",
+      "name": "Balltowerv11",
+      "folder": "bbs",
+      "path": "bbs/ballTowerV11.stl",
+      "type": "stl",
+      "size": 39759484,
+      "modified": "2025-05-26T18:15:41.122869"
+    },
+    {
+      "id": "bbs_ballTowerV12_stl",
+      "name": "Balltowerv12",
+      "folder": "bbs",
+      "path": "bbs/ballTowerV12.stl",
+      "type": "stl",
+      "size": 59700884,
+      "modified": "2025-05-27T10:03:27.465220"
+    },
+    {
+      "id": "bbs_ballTowerV14_stl",
+      "name": "Balltowerv14",
+      "folder": "bbs",
+      "path": "bbs/ballTowerV14.stl",
+      "type": "stl",
+      "size": 54530284,
+      "modified": "2025-05-29T23:40:23.105475"
+    },
+    {
+      "id": "bbs_threads_scad",
+      "name": "Threads",
+      "folder": "bbs",
+      "path": "bbs/threads.scad",
+      "type": "scad",
+      "size": 21720,
+      "modified": "2025-05-17T13:26:12.456798"
+    },
+    {
+      "id": "shoes_orthoticsRV2_stl",
+      "name": "Orthoticsrv2",
+      "folder": "shoes",
+      "path": "shoes/orthoticsRV2.stl",
+      "type": "stl",
+      "size": 216684,
+      "modified": "2025-05-17T13:26:12.473910"
+    },
+    {
+      "id": "scanner_TOP_stl",
+      "name": "Top",
+      "folder": "scanner",
+      "path": "scanner/TOP.stl",
+      "type": "stl",
+      "size": 2607384,
+      "modified": "2025-12-27T12:55:39.755009"
+    },
+    {
+      "id": "scanner_modify_top_scad",
+      "name": "Modify Top",
+      "folder": "scanner",
+      "path": "scanner/modify_top.scad",
+      "type": "scad",
+      "size": 845,
+      "modified": "2025-12-27T12:55:39.755270"
+    },
+    {
+      "id": "scanner_pointed_tip_m6_scad",
+      "name": "Pointed Tip M6",
+      "folder": "scanner",
+      "path": "scanner/pointed_tip_m6.scad",
+      "type": "scad",
+      "size": 1356,
+      "modified": "2025-12-27T12:55:39.750002"
+    },
+    {
+      "id": "scanner_pointed_tip_m6_stl",
+      "name": "Pointed Tip M6",
+      "folder": "scanner",
+      "path": "scanner/pointed_tip_m6.stl",
+      "type": "stl",
+      "size": 423284,
+      "modified": "2025-12-27T12:55:39.750432"
+    },
+    {
+      "id": "scanner_pointed_tip_m6_longer_stl",
+      "name": "Pointed Tip M6 Longer",
+      "folder": "scanner",
+      "path": "scanner/pointed_tip_m6_longer.stl",
+      "type": "stl",
+      "size": 580784,
+      "modified": "2025-12-27T12:55:39.751039"
+    },
+    {
+      "id": "scanner_pointed_tip_m6_longer_clearance_stl",
+      "name": "Pointed Tip M6 Longer Clearance",
+      "folder": "scanner",
+      "path": "scanner/pointed_tip_m6_longer_clearance.stl",
+      "type": "stl",
+      "size": 634284,
+      "modified": "2025-12-27T12:55:39.751924"
+    },
+    {
+      "id": "image2Layers_layered_logo_scad",
+      "name": "Layered Logo",
+      "folder": "image2Layers",
+      "path": "image2Layers/layered_logo.scad",
+      "type": "scad",
+      "size": 2726,
+      "modified": "2025-12-27T12:55:24.426936"
+    },
+    {
+      "id": "cookies_claire_text_scad",
+      "name": "Claire Text",
+      "folder": "cookies",
+      "path": "cookies/claire_text.scad",
+      "type": "scad",
+      "size": 2243,
+      "modified": "2025-05-17T13:26:12.465632"
+    },
+    {
+      "id": "cookies_claire_text_stl",
+      "name": "Claire Text",
+      "folder": "cookies",
+      "path": "cookies/claire_text.stl",
+      "type": "stl",
+      "size": 47284,
+      "modified": "2025-05-17T13:26:12.465712"
+    }
+  ]
+}
